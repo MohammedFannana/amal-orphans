@@ -1,0 +1,101 @@
+<x-main-layout title="1000 أمل لأبناء الشهداء">
+
+
+    <div class="header fw-bold" style="color: var(--primary-color);font-size:18px;  border-top-right-radius: 6px;border-top-left-radius:6px; padding:10px;background:linear-gradient(to left , #c6fdda , #edfaf1)">
+        مرحبًا بك في لوحة الجمعيات
+        <p class="fw-normal mt-2" style="font-size: 15px;color:var(--text-color)">
+            يعرض هذا القسم تفاصيل الكفالات في النظام، حيث يمكنك الاطلاع على ملفاتهم الشخصية، مراجعة بياناتهم، وتحديثها عند الحاجة.  مما يسهل عملية الإشراف والإدارة بشكل شامل ومنظم.
+        </p>
+    </div>
+
+    <x-alert name="success" class="mt-2"/>
+    <x-alert name="danger" class="mt-2"/>
+
+    <section class="family-information mt-5">
+
+        <div class="rounded">
+
+            <div class="mt-4">
+                <div class="d-flex justify-content-between mb-3">
+                    <p class="fs-5 fw-semibold"> تفاصيل الكفالات </p>
+                    {{-- <a href="{{route('admin.orphan.create')}}" class="submit-btn text-decoration-none">+ إضافة يتيم </a> --}}
+                </div>
+
+                <form action="{{route('association.orphan.candidate')}}" method="GET" class="search custom-sm-style w-100">
+
+                    <div class="input-group flex-nowrap mb-4">
+
+                        <input type="text" name="search" class="form-control" placeholder="{{__('البحث عن يتيم...')}}"  aria-describedby="addon-wrapping">
+                        <button type="submit" class="input-group-text" id="addon-wrapping" >
+                            <svg xmlns="http://www.w3.org/2000/svg" height="18" width="18" viewBox="0 0 512 512"><path fill="#1e9448" d="M384 208A176 176 0 1 0 32 208a176 176 0 1 0 352 0zM343.3 366C307 397.2 259.7 416 208 416C93.1 416 0 322.9 0 208S93.1 0 208 0S416 93.1 416 208c0 51.7-18.8 99-50 135.3L507.3 484.7c6.2 6.2 6.2 16.4 0 22.6s-16.4 6.2-22.6 0L343.3 366z"/></svg>
+                        </button>
+                    </div>
+
+                </form>
+
+            </div>
+
+            <div class="table-responsive">
+                <table  class=" border-0 w-100 text-center" style="border-collapse: collapse;">
+
+                    <thead>
+                        <tr>
+                            {{-- <th>#</th> --}}
+                            <th>اسم اليتيم</th>
+                            <th> اسم الكافل  </th>
+                            <th> تاريخ بدأ الكفالة  </th>
+                            <th>  مدة الكفالة </th>
+                            <th> مبلغ الكفالة  </th>
+                            <th> الإجمالي </th>
+                            <th> حالة الكفالة </th>
+                            <th> وصل الدفع  </th>
+                        </tr>
+                    </thead>
+
+                    <tbody>
+
+                        @forelse ($orphan->sponsorships as $sponsorship)
+
+                            <tr>
+                                {{-- <td> <span class="value"> {{$orphan->id}}         </span> </td> --}}
+                                <td> <span class="value"> {{$orphan->name}}       </span> </td>
+                                <td><span class="value">  {{$sponsorship->sponsor->name}}     </span></td>
+                                <td><span class="value">  {{$sponsorship->sponsorship_date}}       </span></td>
+                                <td><span class="value"> {{$sponsorship->duration}}   </span></td>
+                                <td><span class="value">  {{$sponsorship->bail_amount}}  </span></td>
+                                <td><span class="value">  {{$sponsorship->total}}  </span></td>
+                                <td><span class="value">  @if ($sponsorship->status == 'active') مفعلة @else منتهية @endif </span></td>
+                                <td>
+                                    <a href="{{route('orphan.primary.image' , ['file' => encrypt($sponsorship->payment_received)])}}" type="button" class="text-decoration-none file-image p-2">
+                                        <img src="{{asset('images/elements.png')}}" alt="" width="22px" height="22px" >
+                                        وصل الدفع
+                                    </a>
+                                </td>
+
+
+
+                            </tr>
+
+                        @empty
+
+                             <tr>
+                                <td colspan="8" class="text-center fs-5" style="color:var(--primary-color)">
+                                    لا يوجد اي حالة كفالة  مسجلة في النظام
+                                </td>
+                            </tr>
+
+                        @endforelse
+
+                    </tbody>
+                </table>
+            </div>
+
+
+
+        </div>
+
+    </section>
+
+    {{-- {{$orphans->withQueryString()->links()}} --}}
+
+</x-main-layout>

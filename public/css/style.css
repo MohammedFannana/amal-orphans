@@ -1,0 +1,481 @@
+:root {
+    --primary-color: #1e9448;
+    --text-color:#24242480;
+    --color:#24242499;
+}
+
+.submit-btn{
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    border-radius: 15px;
+    padding: 10px 24px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+}
+
+.submit-btn:hover{
+    color: white;
+
+}
+
+.custom-file-upload {
+    display: inline-block;
+    padding: 25px;
+    background-color: #f3f9f5;    cursor: pointer;
+    border: 2px dashed #3a3a3a;
+    color: green;
+    border-radius: 5px;
+}
+
+.background{
+    background:linear-gradient(to left , #c6fdda , #edfaf1 ,white 70%)
+}
+
+.value{
+    color: rgba(36, 36, 36, 0.6);
+}
+
+.file-image{
+    color:#1E9448;
+    background-color: #CBFCDC;
+    border-radius: 10px;
+}
+
+.file-image:hover{
+    color: #1E9448;
+}
+
+hr{
+    color: rgba(36, 36, 36) !important;
+    padding-right: 0 !important;
+}
+
+th {
+    background-color: #dff5e1;
+    padding: 10px;
+}
+
+td {
+    padding: 10px;
+}
+
+tbody tr{
+    background-color: #fbfbfb
+}
+
+/* for actions in index page */
+.show-action{
+    cursor: pointer;
+}
+
+.action {
+    width: 165px;
+    display: none;
+    position: absolute;
+    background: white;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.2);
+    padding: 10px;
+    border-radius: 5px;
+    left: 40px;
+    z-index: 2;
+}
+
+.action a{
+    display: flex;
+    gap: 7px;
+}
+
+input[type="radio"] {
+    accent-color: var(--primary-color);
+    width: 20px;
+}
+
+
+/* Start index style*/
+
+/* navbar */
+.navbar-nav{
+    margin-right: 36px;
+    margin-left: 36px;
+}
+
+.navbar-nav .nav-item .link-active{
+    color: var(--text-color);
+}
+
+@media (max-width: 991px) {
+    .navbar > .container{
+        flex-direction: row-reverse;
+    }
+}
+
+
+/* header */
+/* ... existing code ... */
+
+.header {
+    background-image: url('../images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* height: 100vh; */
+    /* padding: 100px 0; */
+}
+
+
+
+/* .hadith-box {
+    background: rgba(255, 255, 255, 0.9);
+    backdrop-filter: blur(10px);
+    border: 1px solid rgba(255, 255, 255, 0.3);
+} */
+
+.hadith-text {
+    color: var(--primary-color);
+    font-size: 2rem;
+    line-height: 1.5;
+    font-weight: bold;
+}
+
+.hadith-subtitle {
+    color: var(--primary-color);
+    font-size: 1.2rem;
+    opacity: 0.8;
+}
+
+.description {
+    color: var(--text-color);
+    line-height: 1.8;
+}
+
+/* .image-collage {
+    position: relative;
+    height: 600px;
+}
+
+.image-collage img {
+    position: absolute;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+}
+
+.img-1 {
+    width: 60%;
+    top: 0;
+    right: 0;
+    z-index: 3;
+}
+
+.img-2 {
+    width: 50%;
+    top: 20%;
+    left: 0;
+    z-index: 2;
+}
+
+.img-3 {
+    width: 40%;
+    bottom: 0;
+    right: 20%;
+    z-index: 1;
+} */
+
+/* .tag {
+    position: absolute;
+    background: white;
+    padding: 8px 15px;
+    border-radius: 20px;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.1);
+    font-size: 0.9rem;
+    color: var(--primary-color);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.tag::before {
+    content: '';
+    width: 8px;
+    height: 8px;
+    background: var(--primary-color);
+    border-radius: 50%;
+}
+
+.tag-1 { top: 10%; right: 60%; }
+.tag-2 { top: 40%; left: 5%; }
+.tag-3 { bottom: 30%; right: 10%; }
+.tag-4 { bottom: 10%; left: 20%; }
+
+@media (max-width: 991px) {
+    .image-collage {
+        height: 400px;
+        margin-bottom: 40px;
+    }
+
+    .hadith-text {
+        font-size: 1.5rem;
+    }
+
+    .tag {
+        font-size: 0.8rem;
+        padding: 6px 12px;
+    }
+} */
+
+@media (max-width: 767px) {
+    .hadith-box{
+        text-align: center;
+    }
+
+    .hadith-box button{
+        width: 100%;
+        /* text-align: center; */
+    }
+}
+
+
+/*start about us section */
+.feature-card {
+    background-image: url('../images/background.png');
+    background-repeat: no-repeat;
+    background-size: cover;
+    /* background: rgba(255, 255, 255, 0.8); */
+    border-radius: 15px;
+    padding: 2rem 1.5rem;
+    text-align: center;
+    transition: all 0.3s ease;
+    height: 100%;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+}
+
+.feature-card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 15px rgba(0, 0, 0, 0.1);
+}
+
+.icon-wrapper {
+    width: 60px;
+    height: 60px;
+    margin: 0 auto 1.5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.icon-wrapper img {
+    width: 100%;
+    height: auto;
+}
+
+.feature-card h3 {
+    color: var(--text-color);
+    font-size: 1.1rem;
+    margin: 0;
+}
+
+.about .feature-card h3{
+    color: #242424;
+}
+/*End about us section */
+
+/* Start new section */
+
+
+.cta-section .container{
+    /* background: linear-gradient(135deg, #1e9448, #27ae60); */
+    background: linear-gradient(45deg, #8CFDB5, #1e9448, #27ae60);
+    color: white;
+    height: 400px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    border-radius: 40px;
+}
+
+.cta-section h2 {
+    font-size: 2rem;
+    font-weight: bold;
+    line-height: 2;
+}
+
+
+
+.cta-section h2 span {
+    background: linear-gradient(45deg, #ffffff, #9afdbe);
+    color: var(--primary-color);
+    display: inline-block;
+    width: 147px;
+    height: 70px;
+    border-radius: 50%;
+}
+
+.cta-section p {
+    font-size: 1.2rem;
+    opacity: 0.9;
+}
+
+.cta-section .submit-btn {
+    background-color: white;
+    color: var(--primary-color);
+    font-size: 1.1rem;
+    padding: 12px 30px;
+}
+
+.cta-section .submit-btn:hover {
+    background-color: #f8f9fa;
+    transform: translateY(-2px);
+}
+
+/* end new section */
+
+/* start contect section */
+
+.contact-section {
+    background-color: #1e9448;
+    color: white;
+    position: relative;
+}
+
+.contact-form {
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+.contact-form label{
+    color: #242424;
+}
+
+.contact-info h2 {
+    font-size: 1.8rem;
+    font-weight: bold;
+}
+
+.contact-info p {
+    font-size: 1.1rem;
+}
+
+.social-links img {
+    width: 30px;
+    height: 30px;
+    transition: transform 0.3s ease;
+}
+
+.social-links img:hover {
+    transform: scale(1.1);
+}
+
+@media (max-width: 767px) {
+    .contact-info{
+        text-align: center;
+    }
+
+    .contact-info .social{
+        position: absolute;
+        bottom: 0;
+        padding: 40px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100%;
+    }
+
+    .contact-info .social hr{
+        width: 100% !important;
+    }
+
+    .contact-form{
+        margin-bottom: 130px;
+    }
+}
+
+/* End contect section */
+
+/* question section  */
+
+
+.faq-item {
+    margin-bottom: 1rem;
+    border-radius: 5px;
+    overflow: hidden;
+}
+
+.faq-question {
+    /* background: linear-gradient(135deg, #1e9448, #27ae60); */
+    background: linear-gradient(to right, white 55%, #8CFDB5);
+    border: 1px solid #E7F3F5;
+    /* border-bottom: none; */
+    /* background-color: #1e9448; */
+    color: #242424;
+    padding: 1rem;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex-direction: row-reverse;
+}
+
+
+.faq-question.no-border {
+    border-bottom: none; /* Remove border when active */
+}
+
+.faq-toggle {
+    font-size: 1.2rem;
+    background-color: var(--primary-color);
+    width: 29px;
+    height: 29px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    color: white;
+    border-radius: 50%;
+}
+
+.faq-answer {
+    background: linear-gradient(to right, white 55%, #8CFDB5);
+    border: 1px solid #E7F3F5;
+    border-top: none;
+    color: #24242499;
+    padding: 1rem;
+    display: none;
+}
+
+.faq-answer.show {
+    display: block;
+}
+
+
+/* footer section */
+@media (max-width: 767px) {
+    footer{
+        padding: 10px;
+    }
+
+    footer .content{
+        flex-direction: column;
+    }
+}
+
+/* End index Style */
+
+
+/* start main layout page style */
+
+.wrapper .main-header{
+    background-image:url('../images/nav-background.png');
+    background-size: cover;
+    background-repeat: no-repeat;
+    background: linear-gradient(to right, #d4f9e2 ,  white);
+}
+
+.nav-item .nav-link{
+    color: rgba(36, 36, 36, 0.6) !important;
+}
+
+
+
+/* End main layout page style */
+
+/* Start pages in orphans/index style */
+
+
+
+/* End pages in orphans/index style */
+
