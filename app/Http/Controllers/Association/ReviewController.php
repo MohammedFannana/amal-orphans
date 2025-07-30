@@ -2,20 +2,29 @@
 
 namespace App\Http\Controllers\Association;
 
-use App\Http\Controllers\Controller;
+use Exception;
 use App\Models\Orphan;
 use App\Models\Review;
-use Exception;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use App\Http\Controllers\Controller;
+use Illuminate\Support\Facades\Gate;
 
 class ReviewController extends Controller
 {
 
 
     public function create($orphanId){
-
         $orphan = Orphan::where('id' , $orphanId)->first(['id' , 'name']);
+
+
+        if (Gate::allows('complete-orphan-data', $orphan)){
+
+            abort(404);
+
+        }
+
+
         return view('review' , compact('orphan'));
 
     }
@@ -24,6 +33,13 @@ class ReviewController extends Controller
     public function researcherReview(Request $request){
 
         $orphan = Orphan::findOrFail($request->orphan_id);
+
+        if (Gate::allows('complete-orphan-data', $orphan)){
+
+            abort(404);
+
+        }
+
 
         if($orphan->role == 'auditor'){
             abort(404);
@@ -64,7 +80,8 @@ class ReviewController extends Controller
 
 
             DB::commit();
-            return redirect()->back()->with('success', __('تمت مراجعة اليتيم مراجعة أولية بنجاح'));
+
+            return redirect()->route('researcher.orphan.index')->with('success', __('تمت مراجعة اليتيم مراجعة أولية بنجاح'));
 
 
         }catch(Exception $e){

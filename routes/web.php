@@ -1,35 +1,37 @@
 <?php
 
-use App\Http\Controllers\AdController;
-use App\Http\Controllers\Admin\AdController as AdminAdController;
-use App\Http\Controllers\Admin\AssociationController as AdminAssociationController;
-use App\Http\Controllers\Admin\OrphanController as AdminOrphanController;
-use App\Http\Controllers\Admin\SponsorController;
-use App\Http\Controllers\Association\AssociationController;
-use App\Http\Controllers\Association\ExpenseController;
-use App\Http\Controllers\Association\OrphanController as AssociationOrphanController;
-use App\Http\Controllers\Association\ResearcherController;
-use App\Http\Controllers\Association\ReviewController;
-use App\Http\Controllers\Front\FrontController;
-use App\Http\Controllers\Front\QuestionController;
-use App\Http\Controllers\MessageController;
-use App\Http\Controllers\NotificationController;
-use App\Http\Controllers\OrphanController;
-use App\Http\Controllers\ProfileController;
-use App\Http\Controllers\Researcher\ResearcherController as ResearcherResearcherController;
-use App\Http\Controllers\Sponsor\MessageController as SponsorMessageController;
-use App\Http\Controllers\Sponsor\SponserController;
-use App\Http\Middleware\MarkNotificationAsRead;
-use App\Models\Association;
 use App\Models\Orphan;
+use App\Models\Association;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\AdController;
+use Illuminate\Support\Facades\Artisan;
+use App\Http\Controllers\OrphanController;
+use App\Http\Controllers\MessageController;
+use App\Http\Controllers\ProfileController;
+use App\Http\Controllers\Front\ExcelController;
+use App\Http\Controllers\Front\FrontController;
+use App\Http\Middleware\MarkNotificationAsRead;
+use App\Http\Controllers\NotificationController;
+use App\Http\Controllers\Admin\SponsorController;
+use App\Http\Controllers\Front\QuestionController;
+use App\Http\Controllers\Sponsor\SponserController;
+use App\Http\Controllers\Association\ReviewController;
+use App\Http\Controllers\Association\ExpenseController;
+use App\Http\Controllers\Association\ResearcherController;
+use App\Http\Controllers\Association\AssociationController;
+use App\Http\Controllers\Admin\AdController as AdminAdController;
+use App\Http\Controllers\Admin\OrphanController as AdminOrphanController;
+use App\Http\Controllers\Sponsor\MessageController as SponsorMessageController;
+use App\Http\Controllers\Admin\AssociationController as AdminAssociationController;
+use App\Http\Controllers\Association\OrphanController as AssociationOrphanController;
+use App\Http\Controllers\Researcher\ResearcherController as ResearcherResearcherController;
 
 // Route::get('/', function () {
 //     return view('index');
 // });
 
-Route::get('/' , [FrontController::class , 'index']);
+Route::get('/' , [FrontController::class , 'index'])->name('home');
 Route::get('/waiting/orphan' , [FrontController::class , 'showOrphanToSponsored'])->name('front.waiting.orphan');
 Route::post('/contact/send', [FrontController::class, 'send'])->name('contact.send');
 Route::get('/about' , [FrontController::class , 'aboutUs'])->name('about.us');
@@ -66,15 +68,14 @@ Route::prefix('orphan')->group(function(){
 
 
 Route::middleware('auth:association')->prefix('association')->name('association.')->group(function(){
-    // Route::get('generate/registration/link/{associationId}' , [AssociationController::class , 'generateRegistrationLink'])->name('generate.link');
-    // Route::get
+
     Route::resource('/researcher' , ResearcherController::class);
+    Route::get('/register/orphan' , [AssociationOrphanController::class , 'registeredOrphan'])->name('orphan.register');
     Route::get('/candidate/orphan' , [AssociationOrphanController::class , 'candidateOrphan'])->name('orphan.candidate');
     Route::get('/auditor/orphan' , [AssociationOrphanController::class , 'auditorOrphan'])->name('orphan.auditor');
     Route::get('/certified/orphan' , [AssociationOrphanController::class , 'certifiedOrphan'])->name('orphan.certified');
     Route::get('/waiting/orphan' , [AssociationOrphanController::class , 'waitingOrphan'])->name('orphan.waiting');
     Route::get('/sponsored/orphan' , [AssociationOrphanController::class , 'sponsoredOrphan'])->name('orphan.sponsored');
-    // Route::get('/review/{orphanId}' , [ReviewController::class , 'create'])->name('review.create');
     Route::post('/review' , [ReviewController::class , 'associationReview'])->name('orphan.review');
     Route::resource('/orphan' , AssociationOrphanController::class);
 
@@ -104,6 +105,9 @@ Route::middleware('auth:association')->prefix('association')->name('association.
 Route::middleware('auth:researcher')->prefix('researcher')->name('researcher.')->group(function(){
 
     Route::get('/orphan' , [ResearcherResearcherController::class , 'index'])->name('orphan.index');
+    Route::get('/registered' , [ResearcherResearcherController::class , 'registeredOrphan'])->name('registered');
+
+
     Route::get('/orphans/create' , [AssociationOrphanController::class , 'create'])->name('orphans.create');
     Route::get('/first/orphans/create' , [ResearcherResearcherController::class , 'create'])->name('orphans.first.create');
     Route::post('/first/orphans' , [ResearcherResearcherController::class , 'store'])->name('orphans.first.store');
@@ -155,10 +159,10 @@ Route::middleware('auth:sponsor')->prefix('sponsor')->name('sponsor.')->group(fu
 Route::get('/review/{orphan}' , [ReviewController::class , 'create'])->name('orphan.review');
 
 //  sponsor , association
-// Route::middleware('auth:sponsor,association')->prefix('sponsor')->name('sponsor.')->group(function(){
+Route::middleware('auth:sponsor,association')->prefix('sponsor')->name('sponsor.')->group(function(){
     Route::get('sponsorship/show/{orphan}' , [SponserController::class , 'sponsorshipView'])->name('sponsorship.show');
     Route::get('sponsorship/orphan/payments/{orphan}' , [SponserController::class , 'orphanPayments'])->name('orphan.payments');
-// });
+});
 
 // Route::middleware('auth')->group(function () {
     Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
@@ -175,5 +179,28 @@ Route::middleware('auth')->group(function () {
     Route::patch('/profile', [ProfileController::class, 'update'])->name('profile.update');
     Route::delete('/profile', [ProfileController::class, 'destroy'])->name('profile.destroy');
 });
+
+Route::get('/clear-all', function () {
+    Artisan::call('config:clear');
+    Artisan::call('cache:clear');
+    Artisan::call('route:clear');
+    Artisan::call('view:clear');
+    Artisan::call('optimize:clear');
+
+    return 'All caches cleared!';
+});
+
+Route::get('/cache-all', function () {
+    Artisan::call('config:cache');
+    Artisan::call('cache:cache');
+    Artisan::call('route:cache');
+    Artisan::call('view:cache');
+
+
+    return 'All caches cached!';
+});
+
+Route::get('/import-orphans', [ExcelController::class, 'importFromStorageByName']);
+
 
 require __DIR__.'/auth.php';

@@ -78,10 +78,7 @@
                     <span class="value"> {{ $orphan->country }}</span>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold">  حالة الكفالة : </span>
-                    <span class="value"> {{$orphan->role}} </span>
-                </div>
+
 
             </div>
 
@@ -348,16 +345,20 @@
 
 
                 {{-- income_value --}}
-                <div class="col-12 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold"> القيمة المالية للدخل : </span>
-                    <span class="value"> {{$orphan->income_value}} </span>
-               </div>
+                @if($orphan->income_value)
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold"> القيمة المالية للدخل : </span>
+                        <span class="value"> {{$orphan->income_value}} </span>
+                   </div>
+               @endif
 
                 {{-- income_source --}}
+                @if($orphan->income_source)
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <span class="fw-bold"> مصدر الدخل  :</span>
                     <span class="value"> {{$orphan->income_source}} </span>
                 </div>
+                @endif
 
 
             </div>
@@ -477,10 +478,13 @@
 
 
                             {{-- guardian_relation --}}
-                            <div class="col-12 col-lg-6  mb-3">
-                                <span class="fw-bold">  نوع المرض : </span>
-                                <span class="value"> {{$orphan->profile->disease_type}}  </span>
-                            </div>
+
+                            @if($orphan->profile && $orphan->profile->disease_type)
+                                <div class="col-12 col-lg-6  mb-3">
+                                    <span class="fw-bold">  نوع المرض : </span>
+                                    <span class="value"> {{$orphan->profile->disease_type}}  </span>
+                                </div>
+                            @endif
 
                             <hr>
 
@@ -529,18 +533,22 @@
                                 </div>
 
                             {{-- academic_stage --}}
+                            @if($orphan->profile && $orphan->profile->academic_stage)
                                 <div class="col-12 col-lg-6  mb-3">
                                     <span class="fw-bold">  المرحلة الدراسية : </span>
                                     <span class="value"> {{$orphan->profile->academic_stage}}  </span>
                                 </div>
+                            @endif
 
                             <hr>
 
                             {{-- average --}}
+                            @if($orphan->profile && $orphan->profile->average)
                                 <div class="col-12 col-lg-6  mb-3">
                                     <span class="fw-bold"> المعدل : </span>
                                     <span class="value"> {{$orphan->profile->average}}  </span>
                                 </div>
+                            @endif
 
                             @if ($orphan->profile->educational_certificate)
 
@@ -554,7 +562,7 @@
 
                             @else
 
-                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                <div class="col-12 mb-3">
                                     <span class="fw-bold"> سبب عدم توفر الشهادة  :</span>
                                     <span class="value"> {{ $orphan->profile->not_available_educational_certificate }} </span>
                                 </div>

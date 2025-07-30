@@ -90,11 +90,13 @@
                                             <span style="color: var(--text-color);">{{__(' تعديل البيانات')}}</span>
                                         </a>
 
-                                        @if($orphan->role == 'candidate')
+                                        @if (Gate::denies('complete-orphan-data', $orphan) && $orphan->role == 'candidate')
+
                                             <a href="{{route('orphan.review' , $orphan->id)}}" class="text-decoration-none mb-1" style="gap: 10px">
                                                 <img src="{{asset('images/Edit Square.svg')}}" alt="">
                                                 <span style="color: var(--text-color);">{{__(' مراجعة الحالة ')}}</span>
                                             </a>
+
                                         @endif
 
                                     </div>

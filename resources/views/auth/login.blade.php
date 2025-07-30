@@ -18,23 +18,28 @@
         @csrf
 
 
-        <div class="flex justify-content-between mb-4">
-            <button type="button" class="guard-btn d-flex fw-semibold gap-2 background1 border rounded px-4 py-2" data-guard="researcher" style="color: var(--text-color)">
+        <div class="flex justify-content-between mb-4 row gap-1">
+
+            <button type="button" class="col-12 col-sm-5 col-md-4  guard-btn d-flex justify-content-center fw-semibold gap-2 background1 border rounded px-4 py-2" data-guard="researcher" style="color: var(--text-color)">
                 باحث اجتماعي
-                <img src="{{asset('images/sidebar/reschers.png')}}" alt="">
+                <img src="{{asset('images/sidebar/reschers.png')}}" alt="" width="24px" height="24px">
             </button>
-            <button type="button" class="guard-btn d-flex fw-semibold gap-2 background1  border rounded px-4 py-2" data-guard="association"  style="color: var(--text-color)">
+
+            <button type="button" class="col-12 col-sm-5 col-md-2 text-center guard-btn d-flex justify-content-center fw-semibold gap-2 background1  border rounded px-4 py-2" data-guard="association"  style="color: var(--text-color)">
                 جمعية
-                <img src="{{asset('images/sidebar/elements.png')}}" alt="">
+                <img src="{{asset('images/sidebar/elements.png')}}" alt="" width="24px" height="24px">
             </button>
-            <button type="button" class="guard-btn d-flex fw-semibold gap-2  background1  border rounded px-4 py-2" data-guard="sponsor"  style="color: var(--text-color)">
+
+            <button type="button" class="col-12 col-sm-5 col-md-2 text-center guard-btn d-flex justify-content-center fw-semibold gap-2  background1  border rounded px-4 py-2" data-guard="sponsor"  style="color: var(--text-color)">
                 كافل
-                 <img src="{{asset('images/sidebar/Vector.png')}}" alt="">
+                 <img src="{{asset('images/sidebar/Vector.png')}}" alt="" width="24px" height="24px">
             </button>
-            <button type="button" class="guard-btn d-flex fw-semibold gap-2  background1  border rounded px-4 py-2" data-guard="orphan"  style="color: var(--text-color)">
+
+            <button type="button" class="col-12 col-sm-5 col-md-2 text-center guard-btn d-flex justify-content-center fw-semibold gap-2  background1  border rounded px-4 py-2" data-guard="orphan"  style="color: var(--text-color)">
                 يتيم
-                <img src="{{asset('images/sidebar/face.png')}}" alt="">
+                <img src="{{asset('images/sidebar/face.png')}}" alt="" width="24px" height="24px">
             </button>
+
         </div>
 
         <input type="hidden" name="guard" id="guardInput"  value="">

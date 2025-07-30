@@ -442,17 +442,17 @@
 
                                         {{-- guardian_id_number --}}
                                         <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                            <x-form.input name="guardian_id_number" value="{{$orphan->profile->guardian_id_number}}" class="" type="text" id="guardian_id_number" label=" رقم هوية الوصي " placeholder="ادخل رقم هوية الوصي " />
+                                            <x-form.input name="guardian_id_number" value="{{$orphan->profile?->guardian_id_number}}" class="" type="text" id="guardian_id_number" label=" رقم هوية الوصي " placeholder="ادخل رقم هوية الوصي " />
                                         </div>
 
                                         {{-- guardian_housing --}}
                                         <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                            <x-form.input name="guardian_housing" value="{{$orphan->profile->guardian_housing}}"  type="text" id="guardian_housing" label=" السكن " placeholder="ادخل السكن" />
+                                            <x-form.input name="guardian_housing" value="{{$orphan->profile?->guardian_housing}}"  type="text" id="guardian_housing" label=" السكن " placeholder="ادخل السكن" />
                                         </div>
 
                                         {{-- guardian_whats_phone --}}
                                         <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                            <x-form.input name="guardian_whats_phone" value="{{$orphan->profile->guardian_whats_phone}}" type="text" id="guardian_whats_phone" label=" رقم الواتساب " placeholder="ادخل رقم الواتساب  "/>
+                                            <x-form.input name="guardian_whats_phone" value="{{$orphan->profile?->guardian_whats_phone}}" type="text" id="guardian_whats_phone" label=" رقم الواتساب " placeholder="ادخل رقم الواتساب  "/>
                                         </div>
                                     </div>
 
@@ -461,17 +461,17 @@
                                     <div class="row mb-3">
                                         {{-- guardian_first_phone --}}
                                         <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                            <x-form.input name="guardian_first_phone" class="" value="{{$orphan->profile->guardian_first_phone}}" type="text" id="guardian_first_phone" label=" رقم الجوال الأول " placeholder="ادخل رقم الجوال الأول " />
+                                            <x-form.input name="guardian_first_phone" class="" value="{{$orphan->profile?->guardian_first_phone}}" type="text" id="guardian_first_phone" label=" رقم الجوال الأول " placeholder="ادخل رقم الجوال الأول " />
                                         </div>
 
                                         {{-- guardian_first_phone --}}
                                         <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                            <x-form.input name="guardian_secound_phone"  value="{{$orphan->profile->guardian_secound_phone}}" type="text" id="guardian_secound_phone" label=" رقم الجوال الثاني " placeholder="ادخل رقم الجوال الثاني " />
+                                            <x-form.input name="guardian_secound_phone"  value="{{$orphan->profile?->guardian_secound_phone}}" type="text" id="guardian_secound_phone" label=" رقم الجوال الثاني " placeholder="ادخل رقم الجوال الثاني " />
                                         </div>
 
                                         {{-- guardian_email --}}
                                         <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                            <x-form.input name="guardian_email"  value="{{$orphan->profile->guardian_email}}" type="text" id="guardian_email" label=" البريد الالكتروني " placeholder="ادخل البريد الالكتروني  "/>
+                                            <x-form.input name="guardian_email"  value="{{$orphan->profile?->guardian_email}}" type="text" id="guardian_email" label=" البريد الالكتروني " placeholder="ادخل البريد الالكتروني  "/>
                                         </div>
                                     </div>
 
@@ -497,12 +497,12 @@
                                             <label class="mb-2 fw-bold"> الحالة الصحية </label>
                                             <div class="d-flex align-items-center gap-5">
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="health_status" type="radio" id="good"  value="جيد" @checked($orphan->profile->health_status == "جيد")/>
+                                                    <input class="radio-input p-0" name="health_status" type="radio" id="good"  value="جيد" @checked($orphan->profile?->health_status == "جيد")/>
                                                     <label class="form-check-label" for="good" style="color: rgba(36, 36, 36, 0.6)"> جيد </label>
                                                 </div>
 
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="health_status" type="radio" id="sick"  value="مريض" @checked($orphan->profile->health_status == "مريض")/>
+                                                    <input class="radio-input p-0" name="health_status" type="radio" id="sick"  value="مريض" @checked($orphan->profile?->health_status == "مريض")/>
                                                     <label class="form-check-label" for="sick" style="color: rgba(36, 36, 36, 0.6)"> مريض </label>
                                                 </div>
 
@@ -521,17 +521,17 @@
                                             <label class="mb-2 fw-bold"> نوع المرض <span style="color:#777a78;"> (ان وجد) </span> </label>
                                             <div class="d-flex align-items-center gap-5">
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="disease_type" type="radio" id="good"  value="مرض عادي" @checked($orphan->profile->disease_type == "مرض عادي")/>
+                                                    <input class="radio-input p-0" name="disease_type" type="radio" id="good"  value="مرض عادي" @checked($orphan->profile?->disease_type == "مرض عادي")/>
                                                     <label class="form-check-label" for="good" style="color: rgba(36, 36, 36, 0.6)"> مرض عادي </label>
                                                 </div>
 
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="disease_type" type="radio" id="chronic_disease"  value="مرض مزمن" @checked($orphan->profile->disease_type == "مرض مزمن")/>
+                                                    <input class="radio-input p-0" name="disease_type" type="radio" id="chronic_disease"  value="مرض مزمن" @checked($orphan->profile?->disease_type == "مرض مزمن")/>
                                                     <label class="form-check-label" for="chronic_disease" style="color: rgba(36, 36, 36, 0.6)"> مرض مزمن </label>
                                                 </div>
 
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="disease_type" type="radio" id="incurable_disease"  value="مرض عضال" @checked($orphan->profile->disease_type == "مرض عضال")/>
+                                                    <input class="radio-input p-0" name="disease_type" type="radio" id="incurable_disease"  value="مرض عضال" @checked($orphan->profile?->disease_type == "مرض عضال")/>
                                                     <label class="form-check-label" for="incurable_disease" style="color: rgba(36, 36, 36, 0.6)"> مرض عضال </label>
                                                 </div>
 
@@ -553,8 +553,8 @@
 
                                                 <label class="mb-2 fw-bold">   التقرير الطبي  <span style="color:#777a78;"> (ان وجد) </span></label> <br>
 
-                                                @if($orphan->profile->medical_report)
-                                                    <a href="{{route('orphan.primary.image' , ['file' => encrypt($orphan->profile->medical_report)])}}" type="button" class="text-decoration-none d-inline-block mb-2 file-image p-2">
+                                                @if($orphan->profile?->medical_report)
+                                                    <a href="{{route('orphan.primary.image' , ['file' => encrypt($orphan->profile?->medical_report)])}}" type="button" class="text-decoration-none d-inline-block mb-2 file-image p-2">
                                                         <img src="{{asset('images/elements.png')}}" alt="" width="22px" height="22px" >
                                                         التقرير الطبي
                                                     </a>
@@ -569,7 +569,7 @@
 
                                         <div class="col-12">
                                             <div class="w-100">
-                                                <x-form.input name="not_available_medical_report" value="{{$orphan->profile->not_available_medical_report}}" type="text" id="not_available_medical_report" label=" في حالة عدم توفر الملف, يرجى ادخال السبب " placeholder="ادخل الرسالة" />
+                                                <x-form.input name="not_available_medical_report" value="{{$orphan->profile?->not_available_medical_report}}" type="text" id="not_available_medical_report" label=" في حالة عدم توفر الملف, يرجى ادخال السبب " placeholder="ادخل الرسالة" />
                                             </div>
                                         </div>
 
@@ -599,17 +599,17 @@
                                             <label class="mb-2 fw-bold"> الوضع التعليمي  </label>
                                             <div class="d-flex align-items-center gap-5">
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="educational_status" type="radio" id="underschool"  value="دون سن الدراسة" @checked($orphan->profile->educational_status == "دون سن الدراسة")/>
+                                                    <input class="radio-input p-0" name="educational_status" type="radio" id="underschool"  value="دون سن الدراسة" @checked($orphan->profile?->educational_status == "دون سن الدراسة")/>
                                                     <label class="form-check-label" for="underschool" style="color: rgba(36, 36, 36, 0.6)">  دون سن الدراسة </label>
                                                 </div>
 
                                                 <div class="d-flex gap-1">
-                                                    <input class="radio-input p-0" name="educational_status" type="radio" id="study"  value="يدرس"  @checked($orphan->profile->educational_status == "يدرس")/>
+                                                    <input class="radio-input p-0" name="educational_status" type="radio" id="study"  value="يدرس"  @checked($orphan->profile?->educational_status == "يدرس")/>
                                                     <label class="form-check-label" for="study" style="color: rgba(36, 36, 36, 0.6)"> يدرس </label>
                                                 </div>
 
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="educational_status" type="radio" id="no_study"  value="لا يدرس"  @checked($orphan->profile->educational_status == "لا يدرس")/>
+                                                    <input class="radio-input p-0" name="educational_status" type="radio" id="no_study"  value="لا يدرس"  @checked($orphan->profile?->educational_status == "لا يدرس")/>
                                                     <label class="form-check-label" for="no_study" style="color: rgba(36, 36, 36, 0.6)"> لا يدرس </label>
                                                 </div>
 
@@ -627,12 +627,12 @@
                                             <label class="mb-2 fw-bold"> المرحلة الدراسية </label>
                                             <div class="d-flex align-items-center gap-5">
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="academic_stage" type="radio" id="primary"  value="ابتدائي"  @checked($orphan->profile->academic_stage == "ابتدائي")/>
+                                                    <input class="radio-input p-0" name="academic_stage" type="radio" id="primary"  value="ابتدائي"  @checked($orphan->profile?->academic_stage == "ابتدائي")/>
                                                     <label class="form-check-label" for="primary" style="color: rgba(36, 36, 36, 0.6)"> ابتدائي </label>
                                                 </div>
 
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="academic_stage" type="radio" id="preparatory"  value="اعدادي" @checked($orphan->profile->academic_stage == "اعدادي")/>
+                                                    <input class="radio-input p-0" name="academic_stage" type="radio" id="preparatory"  value="اعدادي" @checked($orphan->profile?->academic_stage == "اعدادي")/>
                                                     <label class="form-check-label" for="preparatory" style="color: rgba(36, 36, 36, 0.6)"> اعدادي </label>
                                                 </div>
 
@@ -646,7 +646,7 @@
 
                                         <div class="col-12 mt-3">
                                             <div class="w-100">
-                                                <x-form.input name="average" type="text" id="average" label=" المعدل (ان وجد ) " placeholder="ادخل المعدل" value="{{$orphan->profile->average}}"/>
+                                                <x-form.input name="average" type="text" id="average" label=" المعدل (ان وجد ) " placeholder="ادخل المعدل" value="{{$orphan->profile?->average}}"/>
                                             </div>
                                         </div>
 
@@ -661,8 +661,8 @@
 
                                                 <label class="mb-2 fw-bold">  اخر شعادة تعليمية  <span style="color:#777a78;"> (ان وجد) </span></label> <br>
 
-                                                @if($orphan->profile->educational_certificate)
-                                                    <a href="{{route('orphan.primary.image' , ['file' => encrypt($orphan->profile->educational_certificate)])}}" type="button" class="text-decoration-none d-inline-block mb-2 file-image p-2">
+                                                @if($orphan->profile?->educational_certificate)
+                                                    <a href="{{route('orphan.primary.image' , ['file' => encrypt($orphan->profile?->educational_certificate)])}}" type="button" class="text-decoration-none d-inline-block mb-2 file-image p-2">
                                                         <img src="{{asset('images/elements.png')}}" alt="" width="22px" height="22px" >
                                                         اخر شعادة تعليمية
                                                     </a>
@@ -677,7 +677,7 @@
 
                                         <div class="col-12">
                                             <div class="w-100">
-                                                <x-form.input name="not_available_educational_certificate" value="{{$orphan->profile->not_available_educational_certificate}}" type="text" id="not_available_educational_certificate" label=" في حالة عدم توفر الملف, يرجى ادخال السبب " placeholder="ادخل الرسالة" />
+                                                <x-form.input name="not_available_educational_certificate" value="{{$orphan->profile?->not_available_educational_certificate}}" type="text" id="not_available_educational_certificate" label=" في حالة عدم توفر الملف, يرجى ادخال السبب " placeholder="ادخل الرسالة" />
                                             </div>
                                         </div>
 
@@ -713,42 +713,70 @@
                                                 </tr>
                                             </thead>
                                             <tbody>
-                                                @foreach($orphan->siblings as $sibling)
+                                                @if($orphan?->siblings && $orphan->siblings->isNotEmpty())
+                                                    @foreach($orphan->siblings as $sibling)
+                                                        <tr>
+                                                            <td scope="row">{{ $loop->iteration }}</td>
 
+                                                            @for
+                                                            <td>
+                                                            <span  class="value">  {{$brother->brother_name}} </span>
+                                                            </td>
+
+                                                            <td><span  class="value">   {{$brother->brother_id_number}}  </span></td>
+
+                                                            <td><span  class="value">   {{$brother->brother_gender}}   </span> </td>
+
+                                                            <td> <span  class="value">  {{$brother->brother_birth_date}}   </span> </td>
+
+                                                            <td> <span  class="value">   {{$brother->brother_health_status}} </span> </td>
+
+                                                            @if($brother->brother_medical_report)
+                                                                <td>
+
+                                                                    <a href="{{route('orphan.show.image' , ['file' => encrypt($brother->brother_medical_report)])}}" type="button" class="text-decoration-none file-image p-2">
+                                                                        <img src="{{asset('assets/icon/album.png')}}" alt="" width="24px" height="24px" >
+                                                                        التقرير الطبي
+                                                                    </a>
+
+                                                                </td>
+                                                            @endif
+
+                                                        </tr>
+                                                    @endforeach
+                                                @else
+                                                    {{-- صف فارغ لإضافة أخ/أخت جديد --}}
                                                     <tr>
-                                                        <td>{{$sibling->id}}</td>
-
-                                                            <td>
-                                                                <input name="brother_name[]" type="text" value="{{$sibling->brother_name}}" placeholder="أدخل اسم الأخ/الأخت" class="rounded form-control" />
-                                                            </td>
-                                                            <td>
-                                                                <select name="brother_gender[]" class="form-control rounded form-select">
-                                                                    <option value="ذكر" @selected($sibling->brother_gender == "ذكر")>ذكر</option>
-                                                                    <option value="أنثى" @selected($sibling->brother_gender == "أنثى")>أنثى</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <input name="brother_age[]" value="{{$sibling->brother_age}}" type="text" placeholder="أدخل العمر" class="rounded form-control" />
-                                                            </td>
-                                                            <td>
-                                                                <select name="brother_marital_status[]" class="form-control rounded form-select">
-                                                                    <option value="أعزب">أعزب</option>
-                                                                    <option value="متزوج">متزوج</option>
-                                                                    <option value="أرمل">أرمل</option>
-                                                                    <option value="مطلق">مطلق</option>
-                                                                    <option value="مهجورة">مهجورة</option>
-                                                                </select>
-                                                            </td>
-                                                            <td>
-                                                                <input name="brother_jop[]" value="{{$sibling->brother_jop}}" type="text" placeholder="المهنة" class="rounded form-control" />
-                                                            </td>
-                                                            <td>
-                                                                <input name="brother_id_number[]" value="{{$sibling->brother_id_number}}" type="text" placeholder="رقم الهوية" class="rounded form-control" />
-                                                            </td>
+                                                        <td>1</td>
+                                                        <td>
+                                                            <input name="brother_name[]" type="text" placeholder="أدخل اسم الأخ/الأخت" class="rounded form-control" />
+                                                        </td>
+                                                        <td>
+                                                            <select name="brother_gender[]" class="form-control rounded form-select">
+                                                                <option value="ذكر">ذكر</option>
+                                                                <option value="أنثى">أنثى</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input name="brother_age[]" type="text" placeholder="أدخل العمر" class="rounded form-control" />
+                                                        </td>
+                                                        <td>
+                                                            <select name="brother_marital_status[]" class="form-control rounded form-select">
+                                                                <option value="أعزب">أعزب</option>
+                                                                <option value="متزوج">متزوج</option>
+                                                                <option value="أرمل">أرمل</option>
+                                                                <option value="مطلق">مطلق</option>
+                                                                <option value="مهجورة">مهجورة</option>
+                                                            </select>
+                                                        </td>
+                                                        <td>
+                                                            <input name="brother_jop[]" type="text" placeholder="المهنة" class="rounded form-control" />
+                                                        </td>
+                                                        <td>
+                                                            <input name="brother_id_number[]" type="text" placeholder="رقم الهوية" class="rounded form-control" />
+                                                        </td>
                                                     </tr>
-
-                                                @endforeach
-
+                                                @endif
                                             </tbody>
                                         </table>
                                     </div>
@@ -783,12 +811,12 @@
                                             {{-- <label class="mb-2 fw-bold">  </label> --}}
                                             <div class="d-flex align-items-center gap-5">
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="receive_guarantee" type="radio" id="bank"  value="bank" @checked($orphan->profile->receive_guarantee == "bank") onchange="toggleReceiveDivs()"/>
+                                                    <input class="radio-input p-0" name="receive_guarantee" type="radio" id="bank"  value="bank" @checked($orphan->profile?->receive_guarantee == "bank") onchange="toggleReceiveDivs()"/>
                                                     <label class="form-check-label" for="bank" style="color: rgba(36, 36, 36, 0.6)"> البنك </label>
                                                 </div>
 
                                                 <div class="d-flex  gap-1">
-                                                    <input class="radio-input p-0" name="receive_guarantee" type="radio" id="wallet"  value="wallet" @checked($orphan->profile->receive_guarantee == "wallet") onchange="toggleReceiveDivs()" />
+                                                    <input class="radio-input p-0" name="receive_guarantee" type="radio" id="wallet"  value="wallet" @checked($orphan->profile?->receive_guarantee == "wallet") onchange="toggleReceiveDivs()" />
                                                     <label class="form-check-label" for="wallet" style="color: rgba(36, 36, 36, 0.6)"> محفظة بال باي </label>
                                                 </div>
 
@@ -810,15 +838,15 @@
                                             <div class="d-flex row align-items-center mb-3">
 
                                                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                                    <x-form.input name="account_number" class="" type="text" id="account_number" label=" رقم الحساب " value="{{$orphan->profile->account_number}}" placeholder="ادخل رقم الحساب" />
+                                                    <x-form.input name="account_number" class="" type="text" id="account_number" label=" رقم الحساب " value="{{$orphan->profile?->account_number}}" placeholder="ادخل رقم الحساب" />
                                                 </div>
 
                                                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                                    <x-form.input name="bank" class="" type="text" id="bank" label=" البنك " placeholder="ادخل اسم البنك "  value="{{$orphan->profile->bank}}"/>
+                                                    <x-form.input name="bank" class="" type="text" id="bank" label=" البنك " placeholder="ادخل اسم البنك "  value="{{$orphan->profile?->bank}}"/>
                                                 </div>
 
                                                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                                    <x-form.input name="phone_number_linked_account" class="" type="text" id="phone_number_linked_account" value="{{$orphan->profile->phone_number_linked_account}}" label=" رقم الجوال المربوط بالحساب" placeholder="ادخل رقم الجوال المربوط بالحساب" />
+                                                    <x-form.input name="phone_number_linked_account" class="" type="text" id="phone_number_linked_account" value="{{$orphan->profile?->phone_number_linked_account}}" label=" رقم الجوال المربوط بالحساب" placeholder="ادخل رقم الجوال المربوط بالحساب" />
                                                 </div>
 
                                             </div>
@@ -831,15 +859,15 @@
                                             <div class="d-flex align-items-center row mb-3">
 
                                                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                                    <x-form.input name="wallet_number" value="{{$orphan->profile->wallet_number}}" class="" type="text" id="wallet_number" label=" رقم المحفظة " placeholder="ادخل رقم المحفظة " />
+                                                    <x-form.input name="wallet_number" value="{{$orphan->profile?->wallet_number}}" class="" type="text" id="wallet_number" label=" رقم المحفظة " placeholder="ادخل رقم المحفظة " />
                                                 </div>
 
                                                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                                    <x-form.input name="wallet_owner" value="{{$orphan->profile->wallet_owner}}" class="" type="text" id="wallet_owner" label=" اسم صاحب المحفظة " placeholder="ادخل اسم صاحب المحفظة  " />
+                                                    <x-form.input name="wallet_owner" value="{{$orphan->profile?->wallet_owner}}" class="" type="text" id="wallet_owner" label=" اسم صاحب المحفظة " placeholder="ادخل اسم صاحب المحفظة  " />
                                                 </div>
 
                                                 <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                                    <x-form.input name="wallet_owner_id_number" value="{{$orphan->profile->wallet_owner_id_number}}" class="" type="text" id="wallet_owner_id_number" label=" رقم هوية صاحب المحفظة " placeholder="ادخل رقم هوية صاحب المحفظة" />
+                                                    <x-form.input name="wallet_owner_id_number" value="{{$orphan->profile?->wallet_owner_id_number}}" class="" type="text" id="wallet_owner_id_number" label=" رقم هوية صاحب المحفظة " placeholder="ادخل رقم هوية صاحب المحفظة" />
                                                 </div>
 
                                             </div>
@@ -852,8 +880,8 @@
                                             <div class="col-12 col-md-5 mb-4">
                                                 <label class="mb-2 fw-bold">  هوية صاحب المحفظة  <span style="color:#777a78;"> (ان وجد) </span></label> <br>
 
-                                                @if($orphan->profile->wallet_owner_id_number_image)
-                                                    <a href="{{route('orphan.primary.image' , ['file' => encrypt($orphan->profile->wallet_owner_id_number_image)])}}" type="button" class="text-decoration-none d-inline-block mb-2 file-image p-2">
+                                                @if($orphan->profile?->wallet_owner_id_number_image)
+                                                    <a href="{{route('orphan.primary.image' , ['file' => encrypt($orphan->profile?->wallet_owner_id_number_image)])}}" type="button" class="text-decoration-none d-inline-block mb-2 file-image p-2">
                                                         <img src="{{asset('images/elements.png')}}" alt="" width="22px" height="22px" >
                                                         هوية صاحب المحفظة
                                                     </a>
@@ -868,7 +896,7 @@
 
                                             <div class="col-12">
                                                 <div class="w-100">
-                                                    <x-form.input name="not_available_wallet_owner_id_number_image" value="{{$orphan->profile->not_available_wallet_owner_id_number_image}}" type="text" id="not_available_educational_certificate" label=" في حالة عدم توفر الملف, يرجى ادخال السبب " placeholder="ادخل الرسالة" />
+                                                    <x-form.input name="not_available_wallet_owner_id_number_image" value="{{$orphan->profile?->not_available_wallet_owner_id_number_image}}" type="text" id="not_available_educational_certificate" label=" في حالة عدم توفر الملف, يرجى ادخال السبب " placeholder="ادخل الرسالة" />
                                                 </div>
                                             </div>
                                         </div>

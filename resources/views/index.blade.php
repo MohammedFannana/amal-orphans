@@ -14,8 +14,7 @@
         }
 
         .carousel-inner img {
-            max-height: 400px;
-            object-fit: cover;
+            max-height: 420px;
         }
 
         .custom-arrow .carousel-control-prev-icon,
@@ -82,16 +81,16 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 24px">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">الرئيسية</a>
+                        <a class="nav-link" href="{{route('home')}}">الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">من نحن</a>
+                        <a class="nav-link" href="{{route('about.us')}}">من نحن</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">تواصل معنا</a>
+                        <a class="nav-link" href="{{ route('home') }}#contact">تواصل معنا</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#question"> الأسئلة الشائعة </a>
+                        <a class="nav-link" href="{{ route('home') }}#question"> الأسئلة الشائعة </a>
                     </li>
                 </ul>
 
@@ -225,11 +224,11 @@
             <div id="multiAdCarousel" class="carousel slide" data-bs-ride="carousel" data-bs-interval="3000">
                 <div class="carousel-inner">
 
-                    @foreach ($ads->chunk(4) as $index => $chunk)
+                    @foreach ($ads->chunk(1) as $index => $chunk)
                         <div class="carousel-item @if ($index == 0) active @endif">
                             <div class="d-flex justify-content-center gap-3">
                                 @foreach ($chunk as $ad)
-                                    <div style="width: 250px;">
+                                    <div style="width: 100%;">
                                         <img src="{{ asset('storage/' . $ad->ad) }}" class="d-block w-100 rounded shadow-sm" alt="إعلان">
                                     </div>
                                 @endforeach
@@ -239,7 +238,7 @@
 
                 </div>
 
-                @if($ads->count() > 4)
+                @if($ads->count() > 1)
                     <button class="carousel-control-prev custom-arrow" type="button" data-bs-target="#multiAdCarousel" data-bs-slide="prev">
                         <span class="carousel-control-prev-icon" aria-hidden="true"></span>
                         <span class="visually-hidden">السابق</span>
@@ -411,7 +410,7 @@
                         </li>
                         <li class="list-inline-item text-white">|</li>
                         <li class="list-inline-item">
-                            <a href="#contact" class="text-white text-decoration-none">تواصل معنا</a>
+                            <a href="{{ route('home') }}#contact" class="text-white text-decoration-none">تواصل معنا</a>
                         </li>
                     </ul>
 

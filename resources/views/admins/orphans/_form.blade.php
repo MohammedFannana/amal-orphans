@@ -65,17 +65,17 @@
                         <label class="mb-2 fw-bold"> حالة اليتيم </label>
                         <div class="d-flex align-items-center justify-content-between">
                             <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="orphan_status" type="radio" id="motherless"  value="يتيم الأم"/>
+                                <input class="radio-input p-0" name="orphan_status" type="radio" id="motherless"  value="يتيم الأم" @checked(old('orphan_status')=='يتيم الأم')/>
                                 <label class="form-check-label" for="motherless" style="color: rgba(36, 36, 36, 0.6)">يتيم الأم</label>
                             </div>
 
                             <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="orphan_status" type="radio" id="fatherless"  value="يتيم الأب" checked/>
+                                <input class="radio-input p-0" name="orphan_status" type="radio" id="fatherless"  value="يتيم الأب" @checked(old('orphan_status')=='يتيم الأب')/>
                                 <label class="form-check-label" for="fatherless" style="color: rgba(36, 36, 36, 0.6)">يتيم الأب</label>
                             </div>
 
                             <div class="d-flex gap-1">
-                                <input class="radio-input p-0" name="orphan_status"  type="radio" id="orphan"  value="يتيم الأبوين"/>
+                                <input class="radio-input p-0" name="orphan_status"  type="radio" id="orphan"  value="يتيم الأبوين" @checked(old('orphan_status')=='يتيم الأبوين')/>
                                 <label class="form-check-label" for="orphan" style="color: rgba(36, 36, 36, 0.6)">يتيم الأبوين</label>
                             </div>
                         </div>
@@ -92,12 +92,12 @@
                         <label class="mb-2 fw-bold"> الجنس </label>
                         <div class="d-flex align-items-center gap-5">
                             <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="gender" type="radio" id="male"  value="ذكر"/>
+                                <input class="radio-input p-0" name="gender" type="radio" id="male"  value="ذكر" @checked(old('gender')=='ذكر')/>
                                 <label class="form-check-label" for="male" style="color: rgba(36, 36, 36, 0.6)"> ذكر </label>
                             </div>
 
                             <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="gender" type="radio" id="female"  value="أنثى"/>
+                                <input class="radio-input p-0" name="gender" type="radio" id="female"  value="أنثى" @checked(old('gender')=='أنثى')/>
                                 <label class="form-check-label" for="female" style="color: rgba(36, 36, 36, 0.6)"> أنثى </label>
                             </div>
 
@@ -201,12 +201,12 @@
                             <label class="mb-2 fw-bold"> الحالة الاجتماعية للأب </label>
                             <div class="d-flex align-items-center gap-5">
                                 <div class="d-flex  gap-1">
-                                    <input class="radio-input p-0" name="father_marital_status" type="radio" id="Width"  value="أرمل"/>
+                                    <input class="radio-input p-0" name="father_marital_status" type="radio" id="Width"  value="أرمل" @checked(old('father_marital_status')=='أرمل')/>
                                     <label class="form-check-label" for="Width" style="color: rgba(36, 36, 36, 0.6)"> أرمل </label>
                                 </div>
 
                                 <div class="d-flex gap-1">
-                                    <input class="radio-input p-0" name="father_marital_status" type="radio" id="married"  value="متزوج"/>
+                                    <input class="radio-input p-0" name="father_marital_status" type="radio" id="married"  value="متزوج" @checked(old('father_marital_status')=='متزوج')/>
                                     <label class="form-check-label" for="married" style="color: rgba(36, 36, 36, 0.6)"> متزوج </label>
                                 </div>
 
@@ -260,14 +260,14 @@
                         {{-- mother_marital_status --}}
                         <div class="col-12 col-md-6 col-lg-4 mb-3">
                             <label class="mb-2 fw-bold"> الحالة الاجتماعية للأم </label>
-                            <div class="d-flex align-items-center gap-5">
-                                <div class="d-flex  gap-1">
-                                    <input class="radio-input p-0" name="mother_marital_status" type="radio" id="mother_Width"  value="أرملة"/>
+                            <div class="d-flex align-items-center row">
+                                <div class="d-flex col-12 col-sm-6 gap-1">
+                                    <input class="radio-input p-0" name="mother_marital_status" type="radio" id="mother_Width"  value="أرملة" @checked(old('mother_marital_status')=='أرملة')/>
                                     <label class="form-check-label" for="mother_Width" style="color: rgba(36, 36, 36, 0.6)"> أرملة </label>
                                 </div>
 
-                                <div class="d-flex  gap-1">
-                                    <input class="radio-input p-0" name="mother_marital_status" type="radio" id="mother_married"  value="متزوجة"/>
+                                <div class="d-flex col-12 col-sm-6 gap-1">
+                                    <input class="radio-input p-0" name="mother_marital_status" type="radio" id="mother_married"  value="متزوجة" @checked(old('mother_marital_status')=='متزوجة')/>
                                     <label class="form-check-label" for="mother_married" style="color: rgba(36, 36, 36, 0.6)"> متزوجة </label>
                                 </div>
 
@@ -293,14 +293,14 @@
                 {{-- income --}}
                 <div class="col-12 col-md-6 col-lg-4 mb-3">
                     <label class="mb-2 fw-bold"> مصادر دخل أسرة اليتيم </label>
-                    <div class="d-flex align-items-center gap-5">
-                        <div class="d-flex  gap-1">
-                            <input class="radio-input p-0" name="income" type="radio" id="no_income"  value="بدون دخل"/>
+                    <div class="d-flex align-items-center row">
+                        <div class="d-flex col-12 col-sm-6 gap-1">
+                            <input class="radio-input p-0" name="income" type="radio" id="no_income"  value="بدون دخل" @checked(old('income')=='بدون دخل')/>
                             <label class="form-check-label" for="no_income" style="color: rgba(36, 36, 36, 0.6)"> بدون دخل </label>
                         </div>
 
-                        <div class="d-flex  gap-1">
-                            <input class="radio-input p-0" name="income" type="radio" id="fixed_income"  value="دخل ثايت"/>
+                        <div class="d-flex col-12 col-sm-6 gap-1">
+                            <input class="radio-input p-0" name="income" type="radio" id="fixed_income"  value="دخل ثايت" @checked(old('income')=='دخل ثايت')/>
                             <label class="form-check-label" for="fixed_income" style="color: rgba(36, 36, 36, 0.6)"> دخل ثابت </label>
                         </div>
 
@@ -313,20 +313,18 @@
                     </div>
                 </div>
 
-
-                <p style="color: var(--primary-color)" class="mb-3"> إذا كان  الدخل ثابت </p>
-
                 {{-- income_value & income_source--}}
                 <div class="row mb-3">
                     {{-- income_value --}}
-                    <div class="col-12 col-md-6 col-lg-4 mb-3">
-                        <x-form.input name="income_value" class="" type="text" id="income_value" label=" القيمة المالية للدخل " placeholder="ادخل  القيمة المالية للدخل " />
+                    <div class="col-12 col-md-6 col-lg-4 mb-3 income">
+                        <x-form.input name="income_value" type="text" label=" القيمة المالية للدخل " placeholder="ادخل القيمة المالية للدخل" />
                     </div>
 
-                    {{-- income_source --}}
-                    <div class="col-12 col-md-6 col-lg-4 mb-3">
-                        <x-form.input name="income_source"  type="text" id="income_source" label=" مصدر الدخل " placeholder="ادخل مصدر الدخل " />
+                    <!-- income_source -->
+                    <div class="col-12 col-md-6 col-lg-4 mb-3 income">
+                        <x-form.input name="income_source" type="text" label=" مصدر الدخل " placeholder="ادخل مصدر الدخل" />
                     </div>
+
 
                     {{-- Father's death certificate --}}
                     <div class="col-12 col-md-6 mb-4">
@@ -453,6 +451,7 @@
         <div class="border border-1 rounded" style="border-top-color:#f0fff4 !important">
 
             <div class="m-4">
+
                 {{-- health-status--}}
                 <div class="row mb-3">
                     {{-- health-status --}}
@@ -460,12 +459,12 @@
                         <label class="mb-2 fw-bold"> الحالة الصحية </label>
                         <div class="d-flex align-items-center gap-5">
                             <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="health_status" type="radio" id="health-good"  value="جيد"/>
+                                <input class="radio-input p-0" name="health_status" type="radio" id="health-good"  value="جيد" @checked(old('health_status')=='جيد')/>
                                 <label class="form-check-label" for="health-good" style="color: rgba(36, 36, 36, 0.6)"> جيد </label>
                             </div>
 
                             <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="health_status" type="radio" id="health-sick"  value="مريض"/>
+                                <input class="radio-input p-0" name="health_status" type="radio" id="health-sick"  value="مريض" @checked(old('health_status')=='مريض')/>
                                 <label class="form-check-label" for="health-sick" style="color: rgba(36, 36, 36, 0.6)"> مريض </label>
                             </div>
 
@@ -479,53 +478,55 @@
                     </div>
 
 
-                    {{-- disease_type--}}
-                    <div class="col-12" id="disease_type">
-                            <label class="mb-2 fw-bold"> نوع المرض <span style="color:#777a78;"> (ان وجد) </span> </label>
-                            <div class="d-flex align-items-center gap-5">
-                                <div class="d-flex  gap-1">
-                                    <input class="radio-input p-0" name="disease_type" type="radio" id="good"  value="مرض عادي"/>
-                                    <label class="form-check-label" for="good" style="color: rgba(36, 36, 36, 0.6)"> مرض عادي </label>
-                                </div>
+                    <div id="disease_type" class="row">
 
-                                <div class="d-flex  gap-1">
-                                    <input class="radio-input p-0" name="disease_type" type="radio" id="chronic_disease"  value="مرض مزمن"/>
-                                    <label class="form-check-label" for="chronic_disease" style="color: rgba(36, 36, 36, 0.6)"> مرض مزمن </label>
-                                </div>
-
-                                <div class="d-flex  gap-1">
-                                    <input class="radio-input p-0" name="disease_type" type="radio" id="incurable_disease"  value="مرض عضال"/>
-                                    <label class="form-check-label" for="incurable_disease" style="color: rgba(36, 36, 36, 0.6)"> مرض عضال </label>
-                                </div>
-
-                                @error('disease_type')
-                                    <div class="text-danger">
-                                        {{$message}}
+                        {{-- disease_type--}}
+                        <div class="col-12">
+                                <label class="mb-2 fw-bold"> نوع المرض <span style="color:#777a78;"> (ان وجد) </span> </label>
+                                <div class="d-flex row align-items-center mb-3">
+                                    <div class="d-flex col-12 col-sm-6  col-md-4 gap-1">
+                                        <input class="radio-input p-0" name="disease_type" type="radio" id="good"  value="مرض عادي" @checked(old('disease_type')=='مرض عادي')/>
+                                        <label class="form-check-label" for="good" style="color: rgba(36, 36, 36, 0.6)"> مرض عادي </label>
                                     </div>
-                                @enderror
 
-                            </div>
-                    </div>
-                </div>
+                                    <div class="d-flex col-12 col-sm-6 col-md-4 gap-1">
+                                        <input class="radio-input p-0" name="disease_type" type="radio" id="chronic_disease"  value="مرض مزمن"  @checked(old('disease_type')=='مرض مزمن')/>
+                                        <label class="form-check-label" for="chronic_disease" style="color: rgba(36, 36, 36, 0.6)"> مرض مزمن </label>
+                                    </div>
 
+                                    <div class="d-flex col-12 col-sm-6 col-md-4 gap-1">
+                                        <input class="radio-input p-0" name="disease_type" type="radio" id="incurable_disease"  value="مرض عضال"  @checked(old('disease_type')=='مرض عضال')/>
+                                        <label class="form-check-label" for="incurable_disease" style="color: rgba(36, 36, 36, 0.6)"> مرض عضال </label>
+                                    </div>
 
-                <div class="row">
+                                    @error('disease_type')
+                                        <div class="text-danger">
+                                            {{$message}}
+                                        </div>
+                                    @enderror
 
-                    {{-- Father's death certificate --}}
-                    <div class="col-12 col-md-6 mb-4">
-
-                            <label class="mb-2 fw-bold">   التقرير الطبي  <span style="color:#777a78;"> (ان وجد) </span></label> <br>
-                            <label for="medical_report" class="custom-file-upload text-center" style="width: 90%;color:#777a78;">
-                                <img src="{{asset('images/file.png')}}" alt="" width="50px" height="50px"> ,<br>
-                                اسحب الملف هنا أو اضغط لاختياره
-                            </label>
-                            <x-form.input name="medical_report" class="hidden-file-style" type="file" id="medical_report" style="display: none;"/>
-                    </div>
-
-                    <div class="col-12">
-                        <div class="w-100">
-                            <x-form.input name="not_available_medical_report" type="text" id="not_available_medical_report" label=" في حالة عدم توفر الملف, يرجى ادخال السبب " placeholder="ادخل الرسالة" />
+                                </div>
                         </div>
+
+
+                        {{-- Father's death certificate --}}
+                        <div class="col-12 col-md-6 mb-4">
+
+                                <label class="mb-2 fw-bold">   التقرير الطبي  <span style="color:#777a78;"> (ان وجد) </span></label> <br>
+
+                                <label for="medical_report" class="custom-file-upload text-center" style="width: 90%;color:#777a78;">
+                                    <img src="{{asset('images/file.png')}}" alt="" width="50px" height="50px"> ,<br>
+                                    اسحب الملف هنا أو اضغط لاختياره
+                                </label>
+                                <x-form.input name="medical_report" class="hidden-file-style" type="file" id="medical_report" style="display: none;"/>
+                        </div>
+
+                        <div class="col-12">
+                            <div class="w-100">
+                                <x-form.input name="not_available_medical_report"  type="text" id="not_available_medical_report" label=" في حالة عدم توفر الملف, يرجى ادخال السبب " placeholder="ادخل الرسالة" />
+                            </div>
+                        </div>
+
                     </div>
 
                 </div>
@@ -537,7 +538,8 @@
     </section>
 
 
-    {{-- educational status--}}
+    {{-- educational            </div>
+                    </div> status--}}
     <section class="educational-information mt-5">
 
         {{-- section header component --}}
@@ -552,19 +554,19 @@
                     {{-- educational_status--}}
                     <div class="col-12 mb-3">
                         <label class="mb-2 fw-bold"> الوضع التعليمي  </label>
-                        <div class="d-flex align-items-center gap-5">
-                            <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="educational_status" type="radio" id="underschool"  value="دون سن الدراسة"/>
+                        <div class="d-flex align-items-center row">
+                            <div class="d-flex col-12 col-sm-6 col-md-4 gap-1">
+                                <input class="radio-input p-0" name="educational_status" type="radio" id="underschool"  value="دون سن الدراسة"  @checked(old('educational_status')=='دون سن الدراسة')/>
                                 <label class="form-check-label" for="underschool" style="color: rgba(36, 36, 36, 0.6)">  دون سن الدراسة </label>
                             </div>
 
-                            <div class="d-flex gap-1">
-                                <input class="radio-input p-0" name="educational_status" type="radio" id="study"  value="يدرس"/>
+                            <div class="d-flex col-12 col-sm-6 col-md-4 gap-1">
+                                <input class="radio-input p-0" name="educational_status" type="radio" id="study"  value="يدرس" @checked(old('educational_status')=='يدرس')/>
                                 <label class="form-check-label" for="study" style="color: rgba(36, 36, 36, 0.6)"> يدرس </label>
                             </div>
 
-                            <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="educational_status" type="radio" id="no_study"  value="لا يدرس"/>
+                            <div class="d-flex col-12 col-sm-6 col-md-4 gap-1">
+                                <input class="radio-input p-0" name="educational_status" type="radio" id="no_study"  value="لا يدرس" @checked(old('educational_status')=='لا يدرس')/>
                                 <label class="form-check-label" for="no_study" style="color: rgba(36, 36, 36, 0.6)"> لا يدرس </label>
                             </div>
 
@@ -582,12 +584,12 @@
                         <label class="mb-2 fw-bold"> المرحلة الدراسية </label>
                         <div class="d-flex align-items-center gap-5">
                             <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="academic_stage" type="radio" id="primary"  value="ابتدائي"/>
+                                <input class="radio-input p-0" name="academic_stage" type="radio" id="primary"  value="ابتدائي" @checked(old('academic_stage')=='ابتدائي')/>
                                 <label class="form-check-label" for="primary" style="color: rgba(36, 36, 36, 0.6)"> ابتدائي </label>
                             </div>
 
                             <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="academic_stage" type="radio" id="preparatory"  value="اعدادي"/>
+                                <input class="radio-input p-0" name="academic_stage" type="radio" id="preparatory"  value="اعدادي" @checked(old('academic_stage')=='اعدادي')/>
                                 <label class="form-check-label" for="preparatory" style="color: rgba(36, 36, 36, 0.6)"> اعدادي </label>
                             </div>
 
@@ -681,8 +683,7 @@
                                         <option value="أرمل">أرمل</option>
                                         <option value="مطلق">مطلق</option>
                                         <option value="مهجورة">مهجورة</option>
-                                    </select>
-                                </td>
+                                    </select>                                </td>
                                 <td>
                                     <input name="brother_jop[]" type="text" placeholder="المهنة" class="rounded form-control" />
                                 </td>
@@ -713,23 +714,23 @@
             <div class="m-4">
 
                 {{-- --}}
-                <div class="row mb-3">
+                <div class="mb-3">
 
                     <p style="color: var(--primary-color)">
                         <img src="{{asset('images/alert-circle.png')}}" alt="">
                         يمكنك اختيار واحدة من الطرق التالية لاستلام الكفالة
                     </p>
 
-                    <div class="col-12 col-md-6 col-lg-4 mb-3 ms-3">
+                    <div class="mb-3 ms-3">
                         {{-- <label class="mb-2 fw-bold">  </label> --}}
-                        <div class="d-flex align-items-center gap-5">
-                            <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="receive_guarantee" type="radio" id="bank"  value="bank"  onchange="toggleReceiveDivs()"/>
+                        <div class="d-flex row align-items-center gap-2">
+                            <div class="d-flex col-12 col-sm-6 col-md-2 gap-1">
+                                <input class="radio-input p-0" name="receive_guarantee" type="radio" id="bank"  value="bank"  onchange="toggleReceiveDivs()" @checked(old('receive_guarantee')=='bank')/>
                                 <label class="form-check-label" for="bank" style="color: rgba(36, 36, 36, 0.6)"> البنك </label>
                             </div>
 
-                            <div class="d-flex  gap-1">
-                                <input class="radio-input p-0" name="receive_guarantee" type="radio" id="wallet"  value="wallet"  onchange="toggleReceiveDivs()"/>
+                            <div class="d-flex col-12 col-sm-6 col-md-3 gap-1">
+                                <input class="radio-input p-0" name="receive_guarantee" type="radio" id="wallet"  value="wallet"  onchange="toggleReceiveDivs()" @checked(old('receive_guarantee')=='wallet')/>
                                 <label class="form-check-label" for="wallet" style="color: rgba(36, 36, 36, 0.6)"> محفظة بال باي </label>
                             </div>
 

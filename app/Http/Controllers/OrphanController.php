@@ -732,7 +732,7 @@ class OrphanController extends Controller
             return redirect()->route('orphan.primary.index')->with('success', __('تم تحديث بيانات اليتيم بنجاح'));
         } catch (\Exception $e) {
             DB::rollBack();
-            return redirect()->back()->with('danger', __('فشل في تحديث بيانات اليتيم.'))->withErrors(['error' => $e->getMessage()]);
+            return redirect()->back()->withInput()->with('danger', __('فشل في تسجيل اليتيم. يرجى المحاولة مرة أخرى.'));
         }
 
     }

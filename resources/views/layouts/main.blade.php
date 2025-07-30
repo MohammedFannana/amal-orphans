@@ -49,6 +49,14 @@
             color: var(--primary-color) !important;
         }
 
+        @media (max-width: 475px) {
+            .welcome,
+            .profile-image{
+                display: none !important;
+            }
+        }
+
+
     </style>
 
     @stack('styles')
@@ -71,15 +79,35 @@
 
                 <a class="" data-widget="pushmenu" href="#" role="button" style="color:var(--primary-color)"><i class="fas fa-bars"></i></a>
 
-                <div style="color:var(--primary-color)" class="d-flex align-items-center gap-2 fw-bold" style="font-size: 18px">
+                <div style="color:var(--primary-color); font-size: 18px;" class=" d-flex align-items-center gap-2 fw-bold">
+
                     @php
-                        $user = Auth::guard('web')->user()
-                            ?? Auth::guard('researcher')->user()
-                            ?? Auth::guard('association')->user()
-                            ?? Auth::guard('sponsor')->user()
-                            ?? Auth::guard('orphan')->user();
+                        $guards = ['web', 'researcher', 'association', 'sponsor', 'orphan'];
+                        $user = null;
+                        $guard = null;
+
+                        foreach ($guards as $g) {
+                            if (Auth::guard($g)->check()) {
+                                $user = Auth::guard($g)->user();
+                                $guard = $g;
+                                break;
+                            }
+                        }
+
+                        $nameParts = explode(' ', $user->name ?? '');
+                        $displayName = '';
+
+                        if (in_array($guard, ['sponsor', 'researcher', 'orphan'])) {
+                            $displayName = $nameParts[0] ?? '';
+                        } elseif (in_array($guard, ['web', 'association'])) {
+                            $displayName = ($nameParts[0] ?? '') . ' ' . ($nameParts[1] ?? '');
+                        }
                     @endphp
-                    مرحبًا بعودتك, {{$user->name}}
+
+
+                    مرحبًا بعودتك, <span class="welcome">{{ $displayName }}</span>
+
+
                     <img src="{{asset('images/hand.png')}}" alt="">
                 </div>
 
@@ -88,11 +116,11 @@
             <!-- Left navbar links -->
             <ul class="navbar-nav">
 
-                <img src="{{asset('images/profile.png')}}" alt="">
+                <img src="{{asset('images/profile.png')}}" alt="" class="profile-image">
 
                 <div class="dropdown d-flex align-items-center gap-1" >
                     <button class="btn  dropdown-toggle border-0 d-flex align-items-center gap-2 fw-bold"data-bs-toggle="dropdown" aria-expanded="false" style="color: var(--primary-color)">
-                        {{$user->name}}
+                        {{$displayName}}
                     </button>
                     <ul class="dropdown-menu" style="transform: translateX(70px);">
                       <li><a class="dropdown-item" @if (Auth::guard('orphan')->check()) href="{{route('orphan.primary.index')}}" @else  href="{{route('profile.show')}}" @endif >الصفحة الشخصية</a></li>
@@ -167,10 +195,17 @@
                                 </a>
                             </li>
 
-                            <li class="nav-item rounded {{Route::is('researcher.orphan.*')?'li-active':''}}"> <!-- li-active -->
-                                <a href="{{route('researcher.orphan.index')}}" class="nav-link d-flex gap-2 {{Route::is('researcher.orphan.*')?'link-active':''}}">  <!-- link-active -->
+                            <li class="nav-item rounded {{Route::is('researcher.registered')?'li-active':''}}"> <!-- li-active -->
+                                <a href="{{route('researcher.registered')}}" class="nav-link d-flex gap-2 {{Route::is('researcher.registered')?'link-active':''}}">  <!-- link-active -->
                                     <img src="{{asset('images/sidebar/happy.png')}}" alt="">
-                                    <p style="color: var(--primary-color)"> الأيتام المرشحين </p>
+                                    <p> الأيتام المسجَّلون أوليًا</p>
+                                </a>
+                            </li>
+
+                            <li class="nav-item rounded {{Route::is('researcher.orphan.index')?'li-active':''}}"> <!-- li-active -->
+                                <a href="{{route('researcher.orphan.index')}}" class="nav-link d-flex gap-2 {{Route::is('researcher.orphan.index')?'link-active':''}}" style="color:black">  <!-- link-active -->
+                                    <img src="{{asset('images/sidebar/happy.png')}}" alt="">
+                                    <p> الأيتام المرشحين </p>
                                 </a>
                             </li>
 
@@ -241,6 +276,13 @@
                                         <a href="{{route('association.orphan.create')}}" class="nav-link  ms-2">
                                         <img src="{{asset('images/sidebar/add-user.png')}}" alt="">
                                             <p> إضافة يتيم </p>
+                                        </a>
+                                    </li>
+
+                                     <li class="nav-item rounded">
+                                        <a href="{{route('association.orphan.register')}}" class="nav-link  ms-2">
+                                        <img src="{{asset('images/sidebar/candidate.png')}}" alt="">
+                                            <p> الأيتام المسجَّلون أوليًا </p>
                                         </a>
                                     </li>
 

@@ -82,16 +82,16 @@
             <div class="collapse navbar-collapse" id="navbarTogglerDemo03">
                 <ul class="navbar-nav me-auto mb-2 mb-lg-0" style="gap: 24px">
                     <li class="nav-item">
-                        <a class="nav-link" href="#">الرئيسية</a>
+                        <a class="nav-link" href="{{route('home')}}">الرئيسية</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#about">من نحن</a>
+                        <a class="nav-link" href="{{route('about.us')}}">من نحن</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#contact">تواصل معنا</a>
+                        <a class="nav-link" href="{{ route('home') }}#contact">تواصل معنا</a>
                     </li>
                     <li class="nav-item">
-                        <a class="nav-link" href="#question"> الأسئلة الشائعة </a>
+                        <a class="nav-link" href="{{ route('home') }}#question"> الأسئلة الشائعة </a>
                     </li>
                 </ul>
 
@@ -186,7 +186,7 @@
                         </li>
                         <li class="list-inline-item text-white">|</li>
                         <li class="list-inline-item">
-                            <a href="#contact" class="text-white text-decoration-none">تواصل معنا</a>
+                            <a href="{{ route('home') }}#contact" class="text-white text-decoration-none">تواصل معنا</a>
                         </li>
                     </ul>
 

@@ -12,20 +12,48 @@ class OrphanController extends Controller
      * Display a listing of the resource.
      */
 
-    public function candidateOrphan(Request $request)
+    public function registeredOrphan(Request $request)
     {
         $association_id =auth('association')->user()->id;
                   // dd($associaton_id);
 
-        $orphans = Orphan::where('association_id' , $association_id)
+        $orphans = Orphan::with('profile')
+        ->where('association_id' , $association_id)
         ->where('role' , 'candidate')
+        ->whereNull('guardian_name')
+        ->where(function ($query) {
+        $query->whereDoesntHave('profile') // لا يملك profile
+              ->orWhereHas('profile', function ($q) {
+                  $q->whereNull('guardian_whats_phone'); // يملك profile لكن الرقم null
+              });
+        })
         ->when($request->search, function ($builder, $value) { //from search input
             $builder->where('name', 'LIKE', "%{$value}%");
-        })->paginate(6);
+        })->paginate(10);
+
+
+        return view('associations.orphans.register-orphan' , compact('orphans'));
+    }
+
+    public function candidateOrphan(Request $request)
+    {
+        $association_id =auth('association')->user()->id;
+
+        $orphans = Orphan::with('profile')->where('association_id' , $association_id)
+        ->where('role' , 'candidate')
+        ->whereNotNull('guardian_name')
+        ->whereHas('profile', function ($query) {
+            $query->whereNotNull('guardian_whats_phone');
+        })
+        ->when($request->search, function ($builder, $value) { //from search input
+            $builder->where('name', 'LIKE', "%{$value}%");
+        })->paginate(10);
 
 
         return view('associations.orphans.candidate-orphan' , compact('orphans'));
     }
+
+
 
 
     public function auditorOrphan(Request $request)
@@ -37,7 +65,7 @@ class OrphanController extends Controller
         ->where('role' , 'auditor')
         ->when($request->search, function ($builder, $value) { //from search input
             $builder->where('name', 'LIKE', "%{$value}%");
-        })->paginate(6);
+        })->paginate(10);
 
 
         return view('associations.orphans.auditor-orphan' , compact('orphans'));
@@ -53,7 +81,7 @@ class OrphanController extends Controller
         ->where('role' , 'certified')
         ->when($request->search, function ($builder, $value) { //from search input
             $builder->where('name', 'LIKE', "%{$value}%");
-        })->paginate(6);
+        })->paginate(10);
 
 
         return view('associations.orphans.certified-orphan' , compact('orphans'));
@@ -69,7 +97,7 @@ class OrphanController extends Controller
         ->where('role' , 'waiting')
         ->when($request->search, function ($builder, $value) { //from search input
             $builder->where('name', 'LIKE', "%{$value}%");
-        })->paginate(6);
+        })->paginate(10);
 
 
         return view('associations.orphans.waiting-orphan' , compact('orphans'));
@@ -87,7 +115,7 @@ class OrphanController extends Controller
             $builder->where('name', 'LIKE', "%{$value}%");
         })
          ->with('activeSponsorships')
-        ->paginate(6);
+        ->paginate(10);
 
 
         return view('associations.orphans.sponsored-orphan' , compact('orphans'));
@@ -126,7 +154,7 @@ class OrphanController extends Controller
      */
     public function show(Orphan $orphan)
     {
-        dd($orphan);
+
         $association = auth('association')->user();
 
         if ($orphan->association_id !== $association->id) {

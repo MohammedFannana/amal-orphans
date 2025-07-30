@@ -29,7 +29,7 @@
 
         <div class="rounded">
 
-            <div class="intro  justify-content-between mb-3" style="display: flex">
+            <div class="intro flex-wrap justify-content-between mb-3" style="display: flex">
                 <p class="fs-5 fw-semibold"> قائمة المبالغ المدفوعة </p>
                 <a href="{{route('association.expenses.create')}}" class="submit-btn text-decoration-none"> إيصال الكفالة </a>
             </div>

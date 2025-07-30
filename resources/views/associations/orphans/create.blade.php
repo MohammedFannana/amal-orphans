@@ -153,6 +153,37 @@
             }
         </script>
 
+        <script>
+            document.addEventListener("DOMContentLoaded", function () {
+                const fixedIncome = document.getElementById("fixed_income");
+                const noIncome = document.getElementById("no_income");
+                const incomeFields = document.querySelectorAll(".income");
+
+                // دالة لإظهار أو إخفاء الحقول
+                function toggleIncomeFields(show) {
+                    incomeFields.forEach(el => {
+                        el.style.display = show ? "block" : "none";
+                    });
+                }
+
+                // عند تغيير الاختيار
+                fixedIncome.addEventListener("change", () => {
+                    if (fixedIncome.checked) toggleIncomeFields(true);
+                });
+
+                noIncome.addEventListener("change", () => {
+                    if (noIncome.checked) toggleIncomeFields(false);
+                });
+
+                // عند تحميل الصفحة — في حالة التعديل أو إعادة تحميل
+                if (fixedIncome.checked) {
+                    toggleIncomeFields(true);
+                } else {
+                    toggleIncomeFields(false);
+                }
+            });
+        </script>
+
     @endpush
 
 </x-main-layout>

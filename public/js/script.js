@@ -61,7 +61,7 @@ document.querySelectorAll('.hidden-file-style').forEach((input, index) => {
         const reader = new FileReader();
         reader.onload = function (e) {
             // أولاً، نحذف أي وسائط قديمة
-            wrapper.querySelectorAll('img, video, audio').forEach(el => el.remove());
+            wrapper.querySelectorAll('img').forEach(el => el.remove());
 
             if (fileType.startsWith('image/')) {
                 const img = document.createElement('img');
@@ -69,19 +69,6 @@ document.querySelectorAll('.hidden-file-style').forEach((input, index) => {
                 img.style.width = "40px"; // أو "100%" أو أي قيمة مناسبة
                 wrapper.appendChild(img);
 
-            } else if (fileType.startsWith('video/')) {
-                const video = document.createElement('video');
-                video.src = e.target.result;
-                video.controls = true;
-                video.style.width = "120px"; // أو "100%" أو أي قيمة مناسبة
-                wrapper.appendChild(video);
-
-            } else if (fileType.startsWith('audio/')) {
-                const audio = document.createElement('audio');
-                audio.src = e.target.result;
-                audio.controls = true;
-                audio.style.width = "80px"; // أو "100%" أو أي قيمة مناسبة
-                wrapper.appendChild(audio);
             }
         };
 

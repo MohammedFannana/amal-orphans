@@ -36,46 +36,57 @@
                     <span class="value"> {{$orphan->id_number}} </span>
                 </div>
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold"> حالة اليتيم: </span>
-                    <span class="value"> {{ $orphan->orphan_status }} </span>
-                </div>
+                @if($orphan->orphan_status)
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold"> حالة اليتيم: </span>
+                        <span class="value"> {{ $orphan->orphan_status }} </span>
+                    </div>
+                @endif
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold"> المنطقة / المدينة : </span>
-                    <span class="value"> {{ $orphan->city }} </span>
-                </div>
+                @if($orphan->city)
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold"> المنطقة / المدينة : </span>
+                        <span class="value"> {{ $orphan->city }} </span>
+                    </div>
+                @endif
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold"> تاريخ الميلاد : </span>
-                    <span class="value"> {{ $orphan->birth_date }} </span>
-                </div>
+                @if($orphan->birth_date)
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold"> تاريخ الميلاد : </span>
+                        <span class="value"> {{ $orphan->birth_date }} </span>
+                    </div>
+                @endif
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold">   الجنس: </span>
-                    <span class="value"> {{ $orphan->gender }}</span>
-                </div>
+                @if($orphan->gender)
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold">   الجنس: </span>
+                        <span class="value"> {{ $orphan->gender }}</span>
+                    </div>
+                @endif
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold">  أقرب معلم : </span>
-                    <span class="value"> {{ $orphan->landmark }} </span>
-                </div>
+                @if($orphan->landmark)
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold">  أقرب معلم : </span>
+                        <span class="value"> {{ $orphan->landmark }} </span>
+                    </div>
+                @endif
 
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold">  مكان الميلاد : </span>
-                    <span class="value"> {{ $orphan->birth_place }} </span>
-                </div>
+                @if($orphan->birth_place)
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold">  مكان الميلاد : </span>
+                        <span class="value"> {{ $orphan->birth_place }} </span>
+                    </div>
+                @endif
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold">  الدولة : </span>
-                    <span class="value"> {{ $orphan->country }}</span>
-                </div>
+                @if($orphan->country)
+                    <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold">  الدولة : </span>
+                        <span class="value"> {{ $orphan->country }}</span>
+                    </div>
+                @endif
 
-                <div class="col-12 col-sm-6 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold">  حالة الكفالة : </span>
-                    <span class="value"> مكفول </span>
-                </div>
+
 
             </div>
 
@@ -85,7 +96,9 @@
     </div>
 
     {{-- family information section --}}
-    <section class="family-information mt-5">
+
+    @if($orphan->mother_name)
+        <section class="family-information mt-5">
 
         {{-- section header component --}}
         <x-header title=" بيانات الأسرة " />
@@ -101,22 +114,28 @@
                         <div class="row mb-3">
 
                             {{-- mother-name --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> اسم الأم :</span>
-                                <span class="value"> {{ $orphan->mother_name }} </span>
-                            </div>
+                            @if($orphan->mother_name)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> اسم الأم :</span>
+                                    <span class="value"> {{ $orphan->mother_name }} </span>
+                                </div>
+                            @endif
 
                             {{-- death_mother_date --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> تاريخ الوفاة  :</span>
-                                <span class="value"> {{ $orphan->death_mother_date }} </span>
-                            </div>
+                            @if($orphan->death_mother_date)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> تاريخ الوفاة  :</span>
+                                    <span class="value"> {{ $orphan->death_mother_date }} </span>
+                                </div>
+                            @endif
 
                             {{-- cause_death --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> سبب الوفاة  :</span>
-                                <span class="value"> {{ $orphan->cause_mother_death }} </span>
-                            </div>
+                            @if($orphan->cause_mother_death)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> سبب الوفاة  :</span>
+                                    <span class="value"> {{ $orphan->cause_mother_death }} </span>
+                                </div>
+                            @endif
 
                             {{-- mother_death_certificate or not_available_mother_death --}}
                             @if ($orphan->mother_death_certificate)
@@ -128,7 +147,7 @@
                                     </a>
                                 </div>
 
-                            @else
+                            @elseif($orphan->not_available_mother_death)
 
                                 <div class="col-12 col-md-6 col-lg-3 mb-3">
                                     <span class="fw-bold"> سبب عدم توفر شهادة الوفاة  :</span>
@@ -141,22 +160,28 @@
                             <hr>
 
                             {{-- father-name --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> اسم الأب :</span>
-                                <span class="value"> {{$orphan->father_name}} </span>
-                            </div>
+                            @if($orphan->father_name)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> اسم الأب :</span>
+                                    <span class="value"> {{$orphan->father_name}} </span>
+                                </div>
+                            @endif
 
                             {{-- death_father_date --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> تاريخ الوفاة  :</span>
-                                <span class="value"> {{$orphan->death_father_date}} </span>
-                            </div>
+                            @if($orphan->death_father_date)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> تاريخ الوفاة  :</span>
+                                    <span class="value"> {{$orphan->death_father_date}} </span>
+                                </div>
+                            @endif
 
                             {{-- cause_death --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> سبب الوفاة :</span>
-                                <span class="value"> {{$orphan->cause_father_death}} </span>
-                            </div>
+                            @if($orphan->cause_father_death)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> سبب الوفاة :</span>
+                                    <span class="value"> {{$orphan->cause_father_death}} </span>
+                                </div>
+                            @endif
 
                             {{-- father_death_certificate or not_available_father_death --}}
                             @if ($orphan->father_death_certificate)
@@ -168,7 +193,7 @@
                                     </a>
                                 </div>
 
-                            @else
+                            @elseif($orphan->not_available_father_death)
 
                                 <div class="col-12 col-md-6 col-lg-3 mb-3">
                                     <span class="fw-bold"> سبب عدم توفر شهادة الوفاة  :</span>
@@ -188,22 +213,29 @@
 
                         <div class="row mb-3">
                             {{-- mother-name --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> اسم الأم :</span>
-                                <span class="value"> {{$orphan->mother_name}} </span>
-                            </div>
+                            @if($orphan->mother_name)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> اسم الأم :</span>
+                                    <span class="value"> {{$orphan->mother_name}} </span>
+                                </div>
+                            @endif
 
                             {{-- death_mother_date --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> تاريخ الوفاة  :</span>
-                                <span class="value"> {{$orphan->death_mother_date}} </span>
-                            </div>
+
+                            @if($orphan->death_mother_date)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> تاريخ الوفاة  :</span>
+                                    <span class="value"> {{$orphan->death_mother_date}} </span>
+                                </div>
+                            @endif
 
                             {{-- cause_death --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> سبب الوفاة  :</span>
-                                <span class="value"> {{$orphan->cause_mother_death}} </span>
-                            </div>
+                            @if($orphan->cause_mother_death)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> سبب الوفاة  :</span>
+                                    <span class="value"> {{$orphan->cause_mother_death}} </span>
+                                </div>
+                            @endif
 
                             {{-- mother_death_certificate or not_available_mother_death --}}
                             @if ($orphan->mother_death_certificate)
@@ -216,7 +248,7 @@
                                     </a>
                                 </div>
 
-                            @else
+                            @elseif($orphan->not_available_mother_death)
 
                                 <div class="col-12 col-md-6 col-lg-3 mb-3">
                                     <span class="fw-bold"> سبب عدم توفر شهادة الوفاة  :</span>
@@ -228,30 +260,36 @@
                             <hr>
 
                             {{-- father-name --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> اسم الأب :</span>
-                                <span class="value"> {{$orphan->father_name}} </span>
-                            </div>
+                            @if($orphan->father_name)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> اسم الأب :</span>
+                                    <span class="value"> {{$orphan->father_name}} </span>
+                                </div>
+                            @endif
 
                             {{-- father_id_number --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold">رقم  هوية الأب :</span>
-                                <span class="value"> {{$orphan->father_id_number}} </span>
-                            </div>
+                            @if($orphan->father_id_number)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold">رقم  هوية الأب :</span>
+                                    <span class="value"> {{$orphan->father_id_number}} </span>
+                                </div>
+                            @endif
 
                             {{-- father_phone --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> رقم جوال الأب : </span>
-                                <span class="value"> {{$orphan->father_phone}} </span>
-                            </div>
+                            @if($orphan->father_phone)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> رقم جوال الأب : </span>
+                                    <span class="value"> {{$orphan->father_phone}} </span>
+                                </div>
+                            @endif
 
                             {{-- cause_death --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-
-                                <span class="fw-bold"> الحالة الاجتماعية للأب </span>
-                                <span class="value"> {{$orphan->father_marital_status}} </span>
-
-                            </div>
+                            @if($orphan->father_marital_status)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> الحالة الاجتماعية للأب </span>
+                                    <span class="value"> {{$orphan->father_marital_status}} </span>
+                                </div>
+                             @endif
 
                             <hr>
 
@@ -264,22 +302,28 @@
                     <div id="father_death">
                         <div class="row mb-3">
                             {{-- father-name --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> اسم الأب : </span>
-                                <span class="value"> {{$orphan->father_name}} </span>
-                            </div>
+                            @if($orphan->father_name)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> اسم الأب : </span>
+                                    <span class="value"> {{$orphan->father_name}} </span>
+                                </div>
+                             @endif
 
                             {{-- death_father_date --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> تاريخ الوفاة : </span>
-                                <span class="value"> {{$orphan->death_father_date}} </span>
-                            </div>
+                            @if($orphan->death_father_date)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> تاريخ الوفاة : </span>
+                                    <span class="value"> {{$orphan->death_father_date}} </span>
+                                </div>
+                             @endif
 
                             {{-- cause_death --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> سبب الوفاة :</span>
-                                <span class="value"> {{$orphan->cause_father_death}} </span>
-                            </div>
+                            @if($orphan->cause_father_death)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> سبب الوفاة :</span>
+                                    <span class="value"> {{$orphan->cause_father_death}} </span>
+                                </div>
+                            @endif
 
                             {{-- father_death_certificate or not_available_father_death --}}
                             @if ($orphan->father_death_certificate)
@@ -292,7 +336,7 @@
                                     </a>
                                 </div>
 
-                            @else
+                            @elseif($orphan->not_available_father_death)
 
                                 <div class="col-12 col-md-6 col-lg-3 mb-3">
                                     <span class="fw-bold"> سبب عدم توفر شهادة الوفاة  :</span>
@@ -304,28 +348,37 @@
                             <hr>
 
                             {{-- mother_name --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> اسم الأم : </span>
-                                <span class="value"> {{$orphan->mother_name}} </span>
-                            </div>
+                            @if($orphan->mother_name)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> اسم الأم : </span>
+                                    <span class="value"> {{$orphan->mother_name}} </span>
+                                </div>
+                            @endif
 
                             {{-- mother_id_number --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> رقم هوية الأم : </span>
-                                <span class="value"> {{$orphan->mother_id_number}} </span>
-                            </div>
+                            @if($orphan->mother_id_number)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> رقم هوية الأم : </span>
+                                    <span class="value"> {{$orphan->mother_id_number}} </span>
+                                </div>
+                            @endif
 
                             {{-- mother_phone --}}
+                            @if($orphan->mother_phone)
                             <div class="col-12 col-md-6 col-lg-3 mb-3">
                                 <span class="fw-bold"> رقم جوال الأم : </span>
                                 <span class="value"> {{$orphan->mother_phone}} </span>
                             </div>
+                            @endif
+
 
                             {{-- mother_marital_status --}}
-                            <div class="col-12 col-md-6 col-lg-3 mb-3">
-                                <span class="fw-bold"> الحالة الاجتماعية للأم : </span>
-                                <span class="value"> {{$orphan->mother_marital_status}} </span>
-                            </div>
+                            @if($orphan->mother_marital_status)
+                                <div class="col-12 col-md-6 col-lg-3 mb-3">
+                                    <span class="fw-bold"> الحالة الاجتماعية للأم : </span>
+                                    <span class="value"> {{$orphan->mother_marital_status}} </span>
+                                </div>
+                            @endif
 
                             <hr>
 
@@ -336,23 +389,29 @@
                 @endif
 
                 {{-- income --}}
-                <div class="col-12 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold"> مصادر دخل أسرة اليتيم :</span>
-                    <span class="value"> {{$orphan->income}} </span>
-                </div>
+                @if($orphan->income)
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold"> مصادر دخل أسرة اليتيم :</span>
+                        <span class="value"> {{$orphan->income}} </span>
+                    </div>
+                @endif
 
 
                 {{-- income_value --}}
-                <div class="col-12 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold"> القيمة المالية للدخل : </span>
-                    <span class="value"> {{$orphan->income_value}} </span>
-               </div>
+                @if($orphan->income_value)
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold"> القيمة المالية للدخل : </span>
+                        <span class="value"> {{$orphan->income_value}} </span>
+                   </div>
+               @endif
 
                 {{-- income_source --}}
-                <div class="col-12 col-md-6 col-lg-4 mb-3">
-                    <span class="fw-bold"> مصدر الدخل  :</span>
-                    <span class="value"> {{$orphan->income_source}} </span>
-                </div>
+                @if($orphan->income_source)
+                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                        <span class="fw-bold"> مصدر الدخل  :</span>
+                        <span class="value"> {{$orphan->income_source}} </span>
+                    </div>
+                @endif
 
 
             </div>
@@ -360,6 +419,7 @@
         </div>
 
     </section>
+    @endif
 
 
 
@@ -369,7 +429,8 @@
         <div class="col-12  col-lg-6">
 
             {{-- Guardian information section --}}
-            <section class="family-information mt-5">
+            @if($orphan->guardian_name)
+                <section class="family-information mt-5">
 
                 {{-- section header component --}}
                 <x-header title=" بيانات الوصي " />
@@ -379,73 +440,93 @@
                     <div class="m-4 row">
 
                         {{-- guardian_name --}}
+                        @if($orphan->guardian_name)
                         <div class="col-12 col-lg-6  mb-3">
                             <span class="fw-bold">  اسم الوصي :</span>
                             <span class="value"> {{$orphan->guardian_name}} </span>
                         </div>
+                        @endif
 
 
                         {{-- guardian_relation --}}
+                        @if($orphan->guardian_relation)
                         <div class="col-12 col-lg-6  mb-3">
                             <span class="fw-bold">  صلة القرابة : </span>
                             <span class="value"> {{$orphan->guardian_relation}}  </span>
                         </div>
+                        @endif
+
 
                         <hr>
 
                         {{-- guardian_id_number --}}
+                        @if($orphan->profile && $orphan->profile->guardian_id_number)
                         <div class="col-12 col-lg-6  mb-3">
                             <span class="fw-bold"> رقم هوية الوصي :</span>
                             <span class="value"> {{$orphan->profile->guardian_id_number}}  </span>
                         </div>
+                        @endif
 
                         {{-- guardian_jop --}}
+                        @if($orphan->guardian_jop)
                         <div class="col-12 col-lg-6  mb-3">
                             <span class="fw-bold"> الوظيفة : </span>
                             <span class="value"> {{$orphan->guardian_jop}}  </span>
                         </div>
+                        @endif
 
                         <hr>
 
                         {{-- guardian_housing --}}
+                        @if($orphan->profile && $orphan->profile->guardian_housing)
                         <div class="col-12 col-lg-6  mb-3">
                             <span class="fw-bold"> السكن : </span>
                             <span class="value"> {{$orphan->profile->guardian_housing}}  </span>
                         </div>
+                        @endif
 
                         {{-- guardian_whats_phone --}}
+                        @if($orphan->profile && $orphan->profile->guardian_whats_phone)
                         <div class="col-12 col-lg-6  mb-3">
                             <span class="fw-bold"> رقم الواتس : </span>
                             <span class="value"> {{$orphan->profile->guardian_whats_phone}}  </span>
                         </div>
+                        @endif
 
                         <hr>
 
                         {{-- guardian_first_phone --}}
+                        @if($orphan->profile && $orphan->profile->guardian_first_phone)
                         <div class="col-12 col-lg-6  mb-3">
                             <span class="fw-bold"> رقم الجوال 1 : </span>
                             <span class="value"> {{$orphan->profile->guardian_first_phone}}  </span>
                         </div>
+                        @endif
 
                         {{-- guardian_first_phone --}}
+                        @if($orphan->profile && $orphan->profile->guardian_secound_phone)
                         <div class="col-12 col-lg-6  mb-3">
                             <span class="fw-bold"> رقم الجوال 2 : </span>
                             <span class="value"> {{$orphan->profile->guardian_secound_phone}}  </span>
                         </div>
+                        @endif
 
                         <hr>
 
                         {{-- guardian_email --}}
+                        @if($orphan->profile && $orphan->profile->guardian_email)
                         <div class="col-12  mb-3">
                             <span class="fw-bold"> البريد الالكتروني : </span>
                             <span class="value"> {{$orphan->profile->guardian_email}}  </span>
                         </div>
+                        @endif
 
                     </div>
 
                 </div>
 
             </section>
+            @endif
 
         </div>
 
@@ -453,7 +534,8 @@
 
             <div class="col-12">
                 {{-- health  information section --}}
-                <section class="family-information mt-5">
+                @if($orphan->profile && $orphan->profile->health_status)
+                    <section class="family-information mt-5">
 
                     {{-- section header component --}}
                     <x-header title="  الحالة الصحية " />
@@ -463,21 +545,25 @@
                         <div class="m-4 mb-1 row">
 
                             {{-- guardian_name --}}
-                            <div class="col-12 col-lg-6  mb-3">
-                                <span class="fw-bold"> الحالة الصحية :</span>
-                                <span class="value"> {{$orphan->profile->health_status}}  </span>
-                            </div>
+                            @if($orphan->profile && $orphan->profile->health_status)
+                                <div class="col-12 col-lg-6  mb-3">
+                                    <span class="fw-bold"> الحالة الصحية :</span>
+                                    <span class="value"> {{$orphan->profile->health_status}}  </span>
+                                </div>
+                            @endif
 
 
                             {{-- guardian_relation --}}
-                            <div class="col-12 col-lg-6  mb-3">
-                                <span class="fw-bold">  نوع المرض : </span>
-                                <span class="value"> {{$orphan->profile->disease_type}}  </span>
-                            </div>
+                            @if($orphan->profile && $orphan->profile->disease_type)
+                                <div class="col-12 col-lg-6  mb-3">
+                                    <span class="fw-bold">  نوع المرض : </span>
+                                    <span class="value"> {{$orphan->profile->disease_type}}  </span>
+                                </div>
+                            @endif
 
                             <hr>
 
-                            @if ($orphan->profile->medical_report)
+                            @if ($orphan->profile && $orphan->profile->medical_report)
 
                                 <div class="col-12 col-lg-6 mb-3">
 
@@ -487,7 +573,7 @@
                                     </a>
                                 </div>
 
-                            @else
+                            @elseif($orphan->profile && $orphan->profile->not_available_medical_report)
 
                                 <div class="col-12 col-lg-8 mb-3">
                                     <span class="fw-bold"> سبب عدم توفر التقرير الطبي   :</span>
@@ -502,11 +588,13 @@
                     </div>
 
                 </section>
+                @endif
             </div>
 
             <div class="col-12">
                 {{-- educational  information section --}}
-                <section class="family-information mt-3">
+                @if($orphan->profile && $orphan->profile->educational_status)
+                    <section class="family-information mt-3">
 
                     {{-- section header component --}}
                     <x-header title="  الحالة التعليمية " />
@@ -516,27 +604,33 @@
                         <div class="m-4 mb-1 row">
 
                             {{-- educational_status --}}
-                            <div class="col-12 col-lg-6  mb-3">
-                                <span class="fw-bold">  الوضع التعليمي :</span>
-                                <span class="value"> {{$orphan->profile->educational_status}}  </span>
-                            </div>
+                            @if($orphan->profile && $orphan->profile->educational_status)
+                                <div class="col-12 col-lg-6  mb-3">
+                                    <span class="fw-bold">  الوضع التعليمي :</span>
+                                    <span class="value"> {{$orphan->profile->educational_status}}  </span>
+                                </div>
+                            @endif
 
 
                             {{-- academic_stage --}}
-                            <div class="col-12 col-lg-6  mb-3">
-                                <span class="fw-bold">  المرحلة الدراسية : </span>
-                                <span class="value"> {{$orphan->profile->academic_stage}}  </span>
-                            </div>
+                            @if($orphan->profile && $orphan->profile->academic_stage)
+                                <div class="col-12 col-lg-6  mb-3">
+                                    <span class="fw-bold">  المرحلة الدراسية : </span>
+                                    <span class="value"> {{$orphan->profile->academic_stage}}  </span>
+                                </div>
+                            @endif
 
                             <hr>
 
                             {{-- average --}}
-                            <div class="col-12 col-lg-6  mb-3">
-                                <span class="fw-bold"> المعدل : </span>
-                                <span class="value"> {{$orphan->profile->average}}  </span>
-                            </div>
+                            @if($orphan->profile && $orphan->profile->average)
+                                <div class="col-12 col-lg-6  mb-3">
+                                    <span class="fw-bold"> المعدل : </span>
+                                    <span class="value"> {{$orphan->profile->average}}  </span>
+                                </div>
+                            @endif
 
-                            @if ($orphan->profile->educational_certificate)
+                            @if ($orphan->profile && $orphan->profile->educational_certificate)
 
                                 <div class="col-12 col-lg-6 mb-3">
 
@@ -546,7 +640,7 @@
                                     </a>
                                 </div>
 
-                            @else
+                            @elseif($orphan->profile && $orphan->profile->not_available_educational_certificate)
 
                                 <div class="col-12 col-md-6 col-lg-3 mb-3">
                                     <span class="fw-bold"> سبب عدم توفر الشهادة  :</span>
@@ -562,6 +656,7 @@
                     </div>
 
                 </section>
+                @endif
             </div>
 
         </div>
@@ -572,6 +667,7 @@
 
 
     {{-- بيانات إخوة اليتيم --}}
+    @if($orphan->siblings->isNotEmpty())
     <section class="family-information mt-5">
 
         {{-- section header component --}}
@@ -619,9 +715,11 @@
         </div>
 
     </section>
+    @endif
 
     {{-- How to receive sponsorship--}}
-    <section class="sponsorship-information mt-5">
+    @if ($orphan->profile && $orphan->profile->receive_guarantee)
+        <section class="sponsorship-information mt-5">
 
         {{-- section header component --}}
         <x-header title=" طريقة استلام الكفالة " />
@@ -634,7 +732,7 @@
                 <div class="row mb-3">
 
 
-                    @if ($orphan->profile->receive_guarantee == 'bank')
+                    @if ($orphan->profile && $orphan->profile->receive_guarantee == 'bank')
 
                     {{-- استلام الكفالة عن طريق حساب البنك: --}}
 
@@ -642,25 +740,31 @@
                             <p class="mb-3 fw-bold fs-5"> يتم استلام الكفالة عن طريق حساب البنك:  </p>
                             <div class="d-flex row align-items-center mb-3">
 
-                                <div class="col-12 col-md-6 col-lg-4">
-                                    <span class="fw-bold"> رقم الحساب : </span>
-                                    <span class="value">{{$orphan->profile->account_number}}</span>
-                                </div>
+                                 @if ($orphan->profile && $orphan->profile->account_number)
+                                    <div class="col-12 col-md-6 col-lg-4">
+                                        <span class="fw-bold"> رقم الحساب : </span>
+                                        <span class="value">{{$orphan->profile->account_number}}</span>
+                                    </div>
+                                @endif
 
+                                @if ($orphan->profile && $orphan->profile->bank)
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <span class="fw-bold"> البنك :</span>
                                     <span class="value"> {{$orphan->profile->bank}} </span>
                                 </div>
+                                @endif
 
+                                @if ($orphan->profile && $orphan->profile->phone_number_linked_account)
                                 <div class="col-12 col-md-6 col-lg-4">
                                     <span class="fw-bold"> رقم الجوال المربوط بالحساب </span>
                                     <span class="value"> {{$orphan->profile->phone_number_linked_account}} </span>
                                 </div>
+                                @endif
 
                             </div>
                         </div>
 
-                    @elseif ($orphan->profile->receive_guarantee == 'wallet')
+                    @elseif ($orphan->profile && $orphan->profile->receive_guarantee == 'wallet')
 
                         {{-- استلام الكفالة عن طريق محفظة بال باي: --}}
 
@@ -669,22 +773,29 @@
 
                             <div class="d-flex align-items-center row">
 
-                                <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                    <span class="fw-bold"> رقم المحفظة : </span>
-                                    <span class="value">{{$orphan->profile->wallet_number}}</span>
-                                </div>
+                                @if ($orphan->profile && $orphan->profile->wallet_number)
+                                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                                        <span class="fw-bold"> رقم المحفظة : </span>
+                                        <span class="value">{{$orphan->profile->wallet_number}}</span>
+                                    </div>
+                                @endif
 
-                                <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                    <span class="fw-bold"> اسم صاحب المحفظة : </span>
-                                    <span class="value">{{$orphan->profile->wallet_owner}}</span>
-                                </div>
+                                 @if ($orphan->profile && $orphan->profile->wallet_owner)
 
-                                <div class="col-12 col-md-6 col-lg-4 mb-3">
-                                    <span class="fw-bold"> رقم هوية صاحب المحفظة :</span>
-                                    <span class="value"> {{$orphan->profile->wallet_owner_id_number}} </span>
-                                </div>
+                                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                                        <span class="fw-bold"> اسم صاحب المحفظة : </span>
+                                        <span class="value">{{$orphan->profile->wallet_owner}}</span>
+                                    </div>
+                                @endif
 
-                                @if ($orphan->profile->wallet_owner_id_number_image)
+                                 @if ($orphan->profile && $orphan->profile->wallet_owner_id_number)
+                                    <div class="col-12 col-md-6 col-lg-4 mb-3">
+                                        <span class="fw-bold"> رقم هوية صاحب المحفظة :</span>
+                                        <span class="value"> {{$orphan->profile->wallet_owner_id_number}} </span>
+                                    </div>
+                                @endif
+
+                                @if ($orphan->profile && $orphan->profile->wallet_owner_id_number_image)
 
                                     <div class="col-12 col-md-5 col-lg-4 mb-3">
 
@@ -694,7 +805,7 @@
                                         </a>
                                     </div>
 
-                                @else
+                                @elseif($orphan->profile && $orphan->profile->not_available_wallet_owner_id_number_image)
 
                                     <div class="col-12 col-md-6 col-lg-3 mb-3">
                                         <span class="fw-bold"> سبب عدم توفر هوية صاحب المحفظة :</span>
@@ -724,6 +835,7 @@
         </div>
 
     </section>
+    @endif
 
 
 </x-main-layout>

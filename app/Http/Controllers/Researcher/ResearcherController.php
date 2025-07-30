@@ -10,7 +10,7 @@ use Illuminate\Support\Facades\Hash;
 
 class ResearcherController extends Controller
 {
-    public function index(){
+    public function index(Request $request){
 
         $researcher = auth('researcher')->user();
 
@@ -19,13 +19,42 @@ class ResearcherController extends Controller
             $query->where('role', 'candidate')
                   ->orWhere('role', 'auditor');
         })
-        ->paginate(6);
+        ->whereNotNull('guardian_name')
+        ->whereHas('profile', function ($query) {
+            $query->whereNotNull('guardian_whats_phone');
+        })
+        ->when($request->search, function ($builder, $value) { //from search input
+            $builder->where('name', 'LIKE', "%{$value}%");
+        })
+        ->paginate(10);
         // $researcher = auth('researcher')->user();
         return view('researchers.index' , compact('orphans'));
     }
 
-    public function view(Orphan $orphan){
+    public function registeredOrphan(Request $request)
+    {
+        $researcher = auth('researcher')->user();
+                  // dd($associaton_id);
 
+        $orphans = Orphan::with('profile')
+        ->where('association_id', $researcher->association_id)
+        ->where('role' , 'candidate')
+        ->whereNull('guardian_name')
+        ->where(function ($query) {
+        $query->whereDoesntHave('profile') // لا يملك profile
+              ->orWhereHas('profile', function ($q) {
+                  $q->whereNull('guardian_whats_phone'); // يملك profile لكن الرقم null
+              });
+        })
+        ->when($request->search, function ($builder, $value) { //from search input
+            $builder->where('name', 'LIKE', "%{$value}%");
+        })->paginate(10);
+
+
+        return view('associations.orphans.register-orphan' , compact('orphans'));
+    }
+
+    public function view(Orphan $orphan){
 
         if(auth('researcher')->check()){
             $researcher = auth('researcher')->user();
@@ -33,10 +62,11 @@ class ResearcherController extends Controller
             if ($orphan->association_id != $researcher->association_id) {
                 abort(403, 'غير مسموح لك بالوصول لهذا اليتيم.');
             }
-        }elseif(auth('association')->check()){
-            $association = auth('association')->user();
 
-            if ($orphan->association_id !== $association->id) {
+        }elseif(auth('association')->check()){
+            $association_id = auth('association')->user()->id;
+
+            if ($orphan->association_id != $association_id) {
                 abort(403, 'غير مسموح لك بالوصول لهذا اليتيم.');
             }
         }
