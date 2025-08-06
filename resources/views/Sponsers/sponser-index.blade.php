@@ -64,14 +64,21 @@
                         @forelse ($orphans as $orphan)
 
                             <tr>
-                                 @php
+                                @php
 
                                     $birthDate =  \Carbon\Carbon::parse($orphan->birth_date);
                                     $age = $birthDate->age;
 
-                                    $startDate = \Carbon\Carbon::parse($orphan->activeSponsorships->sponsorship_date);
-                                    // @dd($startDate);
-                                    $endDate = $startDate->copy()->addMonths($orphan->activeSponsorships->duration);
+                                    $startDate = $orphan->activeSponsorships->sponsorship_date
+                                        ? \Carbon\Carbon::parse($orphan->activeSponsorships->sponsorship_date)
+                                        : null;
+
+                                    $duration = $orphan->activeSponsorships->duration;
+
+                                    $endDate = ($startDate && $duration)
+                                        ? $startDate->copy()->addMonths($duration)
+                                        : null;
+
                                 @endphp
 
                                 <td> <span class="value"> {{$orphan->id}}           </span> </td>
@@ -83,7 +90,11 @@
                                 <td><span class="value">  {{$orphan->activeSponsorships->duration}}        </span></td>
                                 <td><span class="value">  {{$orphan->activeSponsorships->sponsorship_date}} </span></td>
 
-                                <td><span class="value">  {{ $endDate->format('Y-m-d') }}     </span></td>
+                                <td>
+                                    <span class="value">
+                                        @if ($endDate) {{ $endDate->format('Y-m-d') }} @else @endif
+                                    </span>
+                                </td>
 
 
                                 <td style="position: relative;">

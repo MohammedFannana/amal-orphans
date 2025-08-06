@@ -148,8 +148,16 @@ Route::middleware('auth:sponsor')->prefix('sponsor')->name('sponsor.')->group(fu
     Route::post('sponsorship/orphan/store' , [SponserController::class , 'store'])->name('orphan.store');
     Route::get('message' , [SponsorMessageController::class , 'view'])->name('message.view');
     Route::get('/notification' , [NotificationController::class , 'SponsorNotification'])->name('notification');
+});
+
+Route::middleware('auth:sponsor,association')->group(function () {
+    Route::get('sponsorship/show/{orphan}' , [SponserController::class , 'sponsorshipView'])->name('sponsorship.show');
+    Route::get('sponsorship/orphan/payments/{orphan}' , [SponserController::class , 'orphanPayments'])->name('orphan.payments');
+});
 
 
+Route::middleware('auth:sponsor,association,researcher,web,orphan')->group(function () {
+    Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
 });
 
 // routes/web.php
@@ -158,21 +166,7 @@ Route::middleware('auth:sponsor')->prefix('sponsor')->name('sponsor.')->group(fu
 
 Route::get('/review/{orphan}' , [ReviewController::class , 'create'])->name('orphan.review');
 
-//  sponsor , association
-Route::middleware('auth:sponsor,association')->prefix('sponsor')->name('sponsor.')->group(function(){
-    Route::get('sponsorship/show/{orphan}' , [SponserController::class , 'sponsorshipView'])->name('sponsorship.show');
-    Route::get('sponsorship/orphan/payments/{orphan}' , [SponserController::class , 'orphanPayments'])->name('orphan.payments');
-});
 
-// Route::middleware('auth')->group(function () {
-    Route::get('/profile/show', [ProfileController::class, 'show'])->name('profile.show');
-// });
-
-
-
-// Route::get('/dashboard', function () {
-//     return view('dashboard');
-// })->middleware(['auth', 'verified'])->name('dashboard');
 
 Route::middleware('auth')->group(function () {
     Route::get('/profile', [ProfileController::class, 'edit'])->name('profile.edit');

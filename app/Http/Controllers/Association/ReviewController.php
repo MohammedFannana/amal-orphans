@@ -73,7 +73,9 @@ class ReviewController extends Controller
 
 
             if ($request->status == 'approved') {
+
                 $orphan->update(['role' => 'auditor']);
+
             } else {
                 $orphan->update(['role' => 'rejected']);
             }
@@ -121,7 +123,13 @@ class ReviewController extends Controller
 
 
             if ($request->status == 'approved') {
-                $orphan->update(['role' => 'certified']);
+
+                if($orphan->activeSponsorships){
+                    $orphan->update(['role' => 'sponsored']);
+                }else{
+                    $orphan->update(['role' => 'certified']);
+                }
+
             } else {
                 $orphan->update(['role' => 'rejected']);
             }

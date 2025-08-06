@@ -56,11 +56,20 @@
                         @forelse ($sponsorships as $sponsorship)
 
                             <tr>
-                                 @php
+                                @php
 
-                                    $startDate = \Carbon\Carbon::parse($sponsorship->sponsorship_date);
-                                    // @dd($startDate);
-                                    $endDate = $startDate->copy()->addMonths($sponsorship->duration);
+
+
+                                    $startDate = $orphan->activeSponsorships->sponsorship_date
+                                        ? \Carbon\Carbon::parse($orphan->activeSponsorships->sponsorship_date)
+                                        : null;
+
+                                    $duration = $orphan->activeSponsorships->duration;
+
+                                    $endDate = ($startDate && $duration)
+                                        ? $startDate->copy()->addMonths($duration)
+                                        : null;
+
                                 @endphp
 
                                 <td> <span class="value"> {{$sponsorship->id}}           </span> </td>
@@ -72,7 +81,10 @@
                                 <td><span class="value">  {{$sponsorship->duration}}        </span></td>
                                 <td><span class="value">  {{$sponsorship->sponsorship_date}} </span></td>
 
-                                <td><span class="value">  {{ $endDate->format('Y-m-d') }}     </span></td>
+                                <td><span class="value">
+                                        @if ($endDate) {{ $endDate->format('Y-m-d') }} @else @endif
+                                    </span>
+                                </td>
                                 <td><span class="value">  @if ($sponsorship->status == 'active') فعالة  @else منهية @endif </span></td>
 
 

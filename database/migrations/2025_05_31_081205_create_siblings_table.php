@@ -20,7 +20,7 @@ return new class extends Migration
             $table->integer('brother_age');
             $table->enum('brother_marital_status' , ['أعزب','متزوج','أرمل','مطلق','مهجورة']);
             $table->string('brother_jop');
-            $table->string('brother_id_number')->unique(); // هنا ممكن تعمل unique
+            $table->string('brother_id_number'); // هنا ممكن تعمل unique
             $table->timestamps();
         });
 

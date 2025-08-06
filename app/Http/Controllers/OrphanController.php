@@ -660,8 +660,7 @@ class OrphanController extends Controller
             'brother_jop' => ['required', 'array'],
             'brother_jop.*' => ['string'],
             'brother_id_number' => ['required', 'array'],
-            'brother_id_number.*' => ['numeric', Rule::unique('siblings', 'brother_id_number')->ignore($orphan->id, 'orphan_id')],
-
+            'brother_id_number.*' => ['numeric', 'digits:9'],
             'receive_guarantee' => ['required', 'in:bank,wallet'],
             'account_number' => ['nullable', 'string'],
             'bank' => ['nullable', 'string'],

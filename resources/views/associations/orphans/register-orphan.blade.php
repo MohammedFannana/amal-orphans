@@ -55,6 +55,7 @@
 
                             <tr>
                                 <td> <span class="value"> {{$orphan->id}}         </span> </td>
+                                 <td> <span class="value"> {{$orphan->name}}         </span> </td>
                                 <td> <span class="value"> {{$orphan->birth_date}}       </span> </td>
                                 <td><span class="value">  {{$orphan->id_number}}     </span></td>
                                 {{-- <td><span class="value">  {{$orphan->association->name}}  </span></td> --}}
@@ -63,7 +64,7 @@
                                     <img class="show-action" src="{{asset('images/Group 8.svg')}}" alt="">
 
                                     <div class="action" >
-                                        
+
                                         <a href="{{route('orphan.edit' , $orphan->id)}}" class="text-decoration-none mb-1" style="gap: 10px">
                                             <img src="{{asset('images/Edit Square.svg')}}" alt="">
                                             <span style="color: var(--text-color);">{{__(' تعديل البيانات')}}</span>
