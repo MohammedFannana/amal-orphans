@@ -251,7 +251,7 @@
                                         الإشعارات
                                     </div>
                                     {{-- @dd($unreadCountNotification) --}}
-                                     @if($unreadCountNotification > 0)
+                                    @if($unreadCountNotification > 0)
                                         <span class="badge" style="background-color: #d5fbe3; color:var(--primary-color)"> {{$unreadCountNotification}} </span>
                                     @endif
                                 </a>

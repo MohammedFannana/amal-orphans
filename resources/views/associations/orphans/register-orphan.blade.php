@@ -21,7 +21,7 @@
                     {{-- <a href="{{route('admin.orphan.create')}}" class="submit-btn text-decoration-none">+ إضافة يتيم </a> --}}
                 </div>
 
-                <form action="{{route('association.orphan.register')}}" method="GET" class="search custom-sm-style w-100">
+                <form action="{{route('researcher.registered')}}" method="GET" class="search custom-sm-style w-100">
 
                     <div class="input-group flex-nowrap mb-4">
 
