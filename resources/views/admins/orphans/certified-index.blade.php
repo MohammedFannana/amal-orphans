@@ -4,6 +4,20 @@
         <style>
             .orphan-intro {
                 display: flex;
+
+            }
+
+            @media (max-width: 576px) { /* XS وأصغر */
+                .orphan-intro {
+                    flex-wrap: wrap;
+                    width:100%;
+                }
+                .buttons{
+                    flex-wrap: wrap;
+                }
+                .width-button{
+                        width:100%;
+                }
             }
         </style>
     @endpush
@@ -23,15 +37,15 @@
 
             <div class="mt-4">
                 <div class="orphan-intro justify-content-between mb-3">
-                    <p class="fs-5 fw-semibold">قائمة الأيتام المعتمدين في النظام</p>
-                    <a href="{{ route('admin.orphan.create') }}" class="submit-btn text-decoration-none">+ إضافة يتيم</a>
+                    <p class="fs-5 fw-semibold">قائمة الأيتام المعتمدين  </p>
+                    <a href="{{ route('admin.orphan.create') }}" class="submit-btn text-decoration-none  text-center">+ إضافة يتيم</a>
                 </div>
 
-                <div class="orphan-intro2 justify-content-between flex0-wrap align-items-center" style="display: none">
+                <div class="orphan-intro2 justify-content-between flex-wrap align-items-center mb-2" style="display: none">
                     <div><p class="fs-5 checkbox-count mt-2">عنصر</p></div>
-                    <div class="d-flex gap-2 align-items-start">
-                        <a href="{{ route('association.expenses.active') }}" type="button" id="submit_orphan_ids" class="submit-btn text-decoration-none" style="border-radius: 5px">ارسال للكفالة</a>
-                        <button id="reset_button" class="btn btn-danger" style="padding: 9px 24px">إلغاء</button>
+                    <div class="d-flex gap-2 align-items-start buttons">
+                        <a href="{{ route('admin.orphan.generate.waiting') }}" type="button" id="submit_orphan_ids" class="submit-btn text-decoration-none width-button text-center" style="border-radius: 5px">ترشيح للكفالة</a>
+                        <button id="reset_button" class="btn btn-danger width-button" style="padding: 9px 24px">إلغاء</button>
                     </div>
                 </div>
 
@@ -125,6 +139,7 @@
                     } else {
                         $('.orphan-intro').show();
                         $('.orphan-intro2').hide().removeClass('d-flex');
+
                     }
                 });
 
@@ -145,7 +160,7 @@
                     }
 
                     let ids = Array.from(selected).map(cb => cb.value).join(',');
-                    window.location.href = `{{ route('association.expenses.active') }}?orphan_ids=${ids}`;
+                    window.location.href = `{{ route('admin.orphan.generate.waiting') }}?orphan_ids=${ids}`;
                 });
             });
         </script>

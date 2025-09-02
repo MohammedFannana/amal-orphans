@@ -718,7 +718,7 @@
                                                         <tr>
                                                             <td scope="row">{{ $loop->iteration }}</td>
 
-                                                            @for
+                                                          
                                                             <td>
                                                             <span  class="value">  {{$brother->brother_name}} </span>
                                                             </td>

@@ -12,6 +12,7 @@ use App\Http\Controllers\Controller;
 
 class SponserController extends Controller
 {
+    
     public function waitingIndex(Request $request){
         $orphans = Orphan::where('role' , 'waiting')
         ->when($request->search, function ($builder, $value) { //from search input
@@ -169,7 +170,7 @@ class SponserController extends Controller
         if (!$orphan->activeSponsorships || $orphan->activeSponsorships->sponsor_id !== $sponsor->id) {
             abort(403, 'غير مسموح لك بالوصول لهذا اليتيم');
         }
-        
+
         $expenses = $orphan->expenses()->where('status' , 'active')->latest()->paginate(8);
         // $expenseAmount = $orphan->expenses()->sum('bail_amount');
 

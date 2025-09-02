@@ -24,6 +24,7 @@ use App\Http\Controllers\Admin\AdController as AdminAdController;
 use App\Http\Controllers\Admin\OrphanController as AdminOrphanController;
 use App\Http\Controllers\Sponsor\MessageController as SponsorMessageController;
 use App\Http\Controllers\Admin\AssociationController as AdminAssociationController;
+use App\Http\Controllers\Admin\Report\SponsorController as ReportSponsorController;
 use App\Http\Controllers\Association\OrphanController as AssociationOrphanController;
 use App\Http\Controllers\Researcher\ResearcherController as ResearcherResearcherController;
 
@@ -122,6 +123,7 @@ Route::middleware('auth:researcher')->prefix('researcher')->name('researcher.')-
 
 Route::middleware('auth:web')->prefix('admin')->name('admin.')->group(function(){
 
+
     Route::resource('/association' , AdminAssociationController::class);
     Route::resource('/sponsor' , SponsorController::class);
     Route::get('orphan/certified' , [AdminOrphanController::class , 'CertifiedOrphan'])->name('orphan.CertifiedOrphan');
@@ -135,6 +137,19 @@ Route::middleware('auth:web')->prefix('admin')->name('admin.')->group(function()
     Route::resource('/question', QuestionController::class);
     Route::get('message' , [SponsorMessageController::class , 'AdminviewMessage'])->name('message.view');
     Route::resource('/ad' , AdminAdController::class);
+
+    Route::prefix('report')->name('report.')->group(function(){
+        Route::get('sponsor' , [ReportSponsorController::class , 'index'])->name('sponsor');
+        Route::get('sponsorship' , [ReportSponsorController::class , 'indexSponsorship'])->name('sponsorship');
+        Route::get('orphan' , [ReportSponsorController::class , 'indexOrphan'])->name('orphan');
+
+        Route::post('excel' , [ReportSponsorController::class , 'ExcelReport'])->name('excel');
+        Route::post('pdf' , [ReportSponsorController::class , 'PdfReport'])->name('pdf');
+        Route::get('download/{id}' , [ReportSponsorController::class , 'download'])->name('download');
+        Route::delete('destroy/{id}' , [ReportSponsorController::class , 'destroy'])->name('destroy');
+    });
+
+
 
 });
 

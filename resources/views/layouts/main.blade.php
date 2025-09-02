@@ -490,6 +490,42 @@
                                 </ul>
                             </li>
 
+                            <li class="nav-item rounded">
+                                <a href="" class="nav-link {{Route::is('admin.report.*')?'li-active':''}} {{Route::is('admin.report.*')?'link-active':''}}"  >
+                                    <img src="{{asset('images/sidebar/orphan (1).png')}}" alt="">
+
+                                    <p >
+                                        التقارير
+                                    </p>
+                                    <i class="right fas fa-angle-left" style="transform:translateX(-140px)"></i>
+
+                                </a>
+                                <ul class="nav nav-treeview">
+
+                                    <li class="nav-item rounded">
+                                        <a href="{{route('admin.report.sponsor')}}" class="nav-link ms-2 {{Route::is('admin.report.sponsor')?'link-active':''}}">
+                                        <img src="{{asset('images/sidebar/people.png')}}" alt="">
+                                            تقارير الكفلاء
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item rounded">
+                                        <a href="{{route('admin.report.sponsorship')}}" class="nav-link ms-2 {{Route::is('admin.report.sponsorship')?'link-active':''}}">
+                                            <img src="{{asset('images/sidebar/certified.png')}}" alt="">
+                                            تقارير الكفالات
+                                        </a>
+                                    </li>
+
+                                    <li class="nav-item rounded">
+                                        <a href="{{route('admin.report.orphan')}}" class="nav-link ms-2 {{Route::is('admin.report.orphan')?'link-active':''}}">
+                                            <img src="{{asset('images/sidebar/clock.png')}}" alt="">
+                                            تقارير الأيتام
+                                        </a>
+                                    </li>
+
+                                </ul>
+                            </li>
+
                             <li class="nav-item  rounded {{Route::is('admin.ad.*')?'li-active':''}}">
                                 <a href="{{route('admin.ad.index')}}" class="nav-link d-flex gap-2 {{Route::is('admin.ad.*')?'link-active':''}}">
                                     <img src="{{asset('images/sidebar/frequently-asked-questions.png')}}" alt="">

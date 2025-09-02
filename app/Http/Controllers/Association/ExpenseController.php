@@ -186,7 +186,6 @@ class ExpenseController extends Controller
 
     public function makeActive(Request $request){
         // dd('c');
-        // dd($request->all());
         $orphanIds = explode(',', $request->orphan_ids);
 
         $orphans = Expense::whereIn('id', $orphanIds)->get();

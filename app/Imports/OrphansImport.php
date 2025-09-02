@@ -79,15 +79,20 @@ class OrphansImport implements ToModel, WithHeadingRow
 
 
 
-            $orphan = Orphan::create([
-                'name' => $row['asm_alytym_alsgl_almdny'],
-                'birth_date' => $birthDate ? $birthDate->format('Y-m-d') : null,
-                'gender' => $row['algns'],
-                'id_number' => $row['rkm_hoy_alytym'],
-                'password' =>  Hash::make($row['rkm_hoy_alytym']),
-                'candidate' => 'candidate',
-                'association_id' => 1,
-            ]);
+            $orphan = Orphan::where('id_number', $row['rkm_hoy_alytym'])->first();
+
+            if (!$orphan) {
+                $orphan = Orphan::create([
+                    'name' => $row['asm_alytym_alsgl_almdny'],
+                    'birth_date' => $birthDate ? $birthDate->format('Y-m-d') : null,
+                    'gender' => $row['algns'],
+                    'id_number' => $row['rkm_hoy_alytym'],
+                    'password' =>  Hash::make($row['rkm_hoy_alytym']),
+                    'candidate' => 'candidate',
+                    'association_id' => 1,
+                ]);
+            }
+
 
             // نحاول نجيب الكافل بالبريد الإلكتروني
             $sponsor = Sponsor::where('email', $row['albryd_alalktrony_llkafl'])->first();

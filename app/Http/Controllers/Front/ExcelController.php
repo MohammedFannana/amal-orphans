@@ -15,7 +15,7 @@ class ExcelController extends Controller
 
         public function importFromStorageByName()
         {
-           $filePath = storage_path('app/orphans2.xlsx'); // تأكد أن الملف موجود هنا
+           $filePath = storage_path('app/orphans3.xlsx'); // تأكد أن الملف موجود هنا
 
             try {
                 Excel::import(new OrphansImport, $filePath);
